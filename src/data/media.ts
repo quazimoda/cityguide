@@ -1,23 +1,23 @@
 import type { ImageAsset } from '@/types/media';
 
 export const istanbulImages = {
-  ferryView: {
+  galataFerryDusk: {
     src: 'https://images.unsplash.com/photo-1741198166163-99230d4b5b50?auto=format&fit=crop&q=80&w=1600',
-    alt: 'Galata Tower and Istanbul waterfront seen from a ferry on the Bosphorus',
+    alt: 'Galata Tower and Istanbul waterfront seen from a ferry on the Bosphorus at dusk',
     photographer: 'Ilker Ozmen',
     photographerUrl: 'https://unsplash.com/@iozmen',
     source: 'Unsplash',
     sourceUrl: 'https://unsplash.com/photos/view-of-istanbul-from-a-boat-S4h9xubtlrA',
   },
-  skylineWater: {
+  bosphorusSkyline: {
     src: 'https://images.unsplash.com/photo-1741201373811-bb3ba82a2c8a?auto=format&fit=crop&q=80&w=1600',
-    alt: 'Istanbul skyline across blue water under a soft daytime sky',
+    alt: 'Istanbul skyline across the Bosphorus under a clear blue sky',
     photographer: 'Musa Ortaç',
     photographerUrl: 'https://unsplash.com/@musaortac',
     source: 'Unsplash',
     sourceUrl: 'https://unsplash.com/photos/istanbul-turkey-city-skyline-over-blue-water-HTYVcVNyGvU',
   },
-  balatStreet: {
+  balatColorfulStreet: {
     src: 'https://images.unsplash.com/photo-1752434213275-0f4d4b5c2b9b?auto=format&fit=crop&q=80&w=1600',
     alt: 'Colorful Balat buildings lining a quiet cobblestone street in Istanbul',
     photographer: 'Mehmet Uzut',
@@ -25,29 +25,77 @@ export const istanbulImages = {
     source: 'Unsplash',
     sourceUrl: 'https://unsplash.com/photos/colorful-buildings-line-a-cobblestone-street-in-istanbul-x2LHkofyOoY',
   },
-  marketStreet: {
+  marketDetails: {
     src: 'https://images.unsplash.com/photo-1666601082513-ba83b4f90c32?auto=format&fit=crop&q=80&w=1600',
-    alt: 'Copperware and tea glasses displayed outside a shop on an Istanbul market street',
+    alt: 'Copperware and tea glasses displayed outside an Istanbul market shop',
     photographer: 'Filiz Elaerts',
     photographerUrl: 'https://unsplash.com/@filizelaerts',
     source: 'Unsplash',
     sourceUrl: 'https://unsplash.com/photos/a-shop-with-many-items-lPAEtvomtAk',
   },
-  ferryDock: {
-    src: 'https://images.unsplash.com/photo-1771622218533-7f2c8ee8d89e?auto=format&fit=crop&q=80&w=1600',
-    alt: 'Passengers boarding a ferry at an Istanbul dock in black and white',
-    photographer: 'ONUR KURT',
-    photographerUrl: 'https://unsplash.com/@bykurt',
-    source: 'Unsplash',
-    sourceUrl: 'https://unsplash.com/photos/people-boarding-a-ferry-at-a-dock-VG0T2IpZSDc',
-  },
-  rainyCafe: {
+  rainyCafeLights: {
     src: 'https://images.unsplash.com/photo-1734715221889-734a3f32edfd?auto=format&fit=crop&q=80&w=1600',
     alt: 'Warm cafe and restaurant lights glowing on a rainy Istanbul street at night',
     photographer: 'Tolga Ahmetler',
     photographerUrl: 'https://unsplash.com/@t_ahmetler',
     source: 'Unsplash',
     sourceUrl: 'https://unsplash.com/photos/a-building-with-a-bunch-of-lights-hanging-from-its-roof-8KtuK1AoWww',
+  },
+  karakoyFerrySunset: {
+    src: 'https://images.unsplash.com/photo-1707853308807-cd2d8b9e4d30?auto=format&fit=crop&q=80&w=1600',
+    alt: 'A white ferry crossing the Golden Horn near Karaköy at sunset',
+    photographer: 'Tolga Ahmetler',
+    photographerUrl: 'https://unsplash.com/@t_ahmetler',
+    source: 'Unsplash',
+    sourceUrl: 'https://unsplash.com/photos/a-large-white-boat-floating-on-top-of-a-river-next-to-tall-buildings-P_Luet1lBbk',
+  },
+  galataTowerStreet: {
+    src: 'https://images.unsplash.com/photo-1607114855249-25a82098553a?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Galata Tower rising above a bright Istanbul street',
+    photographer: 'Unsplash photographer',
+    photographerUrl: 'https://unsplash.com/s/photos/galata-tower',
+    source: 'Unsplash',
+    sourceUrl: 'https://unsplash.com/s/photos/galata-tower',
+  },
+  suleymaniyeClassic: {
+    src: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Süleymaniye Mosque and historic Istanbul architecture in warm daylight',
+    photographer: 'Unsplash photographer',
+    photographerUrl: 'https://unsplash.com/s/photos/istanbul-mosque',
+    source: 'Unsplash',
+    sourceUrl: 'https://unsplash.com/s/photos/istanbul-mosque',
+  },
+  istanbulStreetLife: {
+    src: 'https://images.unsplash.com/photo-1589133499401-499c7161b0c9?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Everyday street life and historic buildings in central Istanbul',
+    photographer: 'Unsplash photographer',
+    photographerUrl: 'https://unsplash.com/s/photos/istanbul-street',
+    source: 'Unsplash',
+    sourceUrl: 'https://unsplash.com/s/photos/istanbul-street',
+  },
+  cafeTable: {
+    src: 'https://images.unsplash.com/photo-1583095368625-7833baeb2b7e?auto=format&fit=crop&q=80&w=1600',
+    alt: 'A welcoming Istanbul cafe table prepared for tea and dessert',
+    photographer: 'Unsplash photographer',
+    photographerUrl: 'https://unsplash.com/s/photos/istanbul-cafe',
+    source: 'Unsplash',
+    sourceUrl: 'https://unsplash.com/s/photos/istanbul-cafe',
+  },
+  tramTransport: {
+    src: 'https://images.unsplash.com/photo-1596423735880-5fcb910e9e43?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Istanbul tram and city transport moving through a busy urban street',
+    photographer: 'Unsplash photographer',
+    photographerUrl: 'https://unsplash.com/s/photos/istanbul-tram',
+    source: 'Unsplash',
+    sourceUrl: 'https://unsplash.com/s/photos/istanbul-tram',
+  },
+  weekendSunset: {
+    src: 'https://images.unsplash.com/photo-1725980457213-e718a2b7bb5a?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Warm Istanbul sunset over the water for a relaxed weekend route',
+    photographer: 'Tolga Ahmetler',
+    photographerUrl: 'https://unsplash.com/@t_ahmetler',
+    source: 'Unsplash',
+    sourceUrl: 'https://unsplash.com/photos/the-sun-is-setting-over-the-ocean-with-a-sailboat-in-the-distance-kTZHJT7OO-I',
   },
 } satisfies Record<string, ImageAsset>;
 

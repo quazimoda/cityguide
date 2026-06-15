@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "lint:source": "node scripts/lint-check.mjs",
     "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm run typecheck && npm run lint:source && npm run build"
+    "check": "npm run lint && npm run typecheck && npm run lint:source && npm run check:images && npm run build",
+    "check:images": "node scripts/check-remote-images.mjs"
   },
   "dependencies": {
     "next": "15.3.8",
