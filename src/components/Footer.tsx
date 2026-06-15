@@ -1,0 +1,2 @@
+import Link from 'next/link';import { Container } from './Container';
+export function Footer(){return <footer className="mt-16 bg-teal-900 text-white"><Container className="grid gap-6 py-10 md:grid-cols-3"><div><p className="font-black">City Advisor Istanbul</p><p className="mt-2 text-teal-50">Your Smart Guide to Living, Studying, and Exploring Istanbul</p></div><Link href="/guides">City Guides</Link><Link href="/contact">Contact & Subscribe</Link></Container></footer>}

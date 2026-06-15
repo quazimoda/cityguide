@@ -1,0 +1,2 @@
+import type { Recommendation } from '@/types/content';import { TagList } from './TagList';
+export function RecommendationCard({recommendation}:{recommendation:Recommendation}){return <article className={`rounded-3xl bg-gradient-to-br ${recommendation.gradient} p-6`}><p className="text-sm font-bold text-teal-800">{recommendation.area}</p><h3 className="mt-2 text-xl font-black">{recommendation.title}</h3><p className="my-4 text-gray-700">{recommendation.excerpt}</p><TagList tags={recommendation.tags}/></article>}

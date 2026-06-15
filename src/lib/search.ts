@@ -1,0 +1,2 @@
+import { guides } from '@/data/guides';import { blogPosts } from '@/data/blog';import { recommendations } from '@/data/recommendations';
+export const searchItems=[...guides.map(i=>({...i,type:'guides' as const,href:`/guides/${i.category.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}/${i.slug}`})),...blogPosts.map(i=>({...i,type:'blog' as const,href:`/blog/${i.slug}`})),...recommendations.map(i=>({...i,publishedDate:'',readingTime:'',seoDescription:i.excerpt,heroImage:'',sections:[],type:'recommendations' as const,href:i.link}))];
