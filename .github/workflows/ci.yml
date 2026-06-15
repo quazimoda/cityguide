@@ -31,5 +31,8 @@ jobs:
       - name: Source lint
         run: npm run lint:source
 
+      - name: Image validation
+        run: npm run check:images
+
       - name: Build
         run: npm run build
