@@ -1,0 +1,2 @@
+import Link from 'next/link';import type { Article } from '@/types/content';import { TagList } from './TagList';
+export function BlogCard({post}:{post:Article}){return <article className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-teal-100"><p className="text-sm font-bold text-orange-600">{post.readingTime} · {post.publishedDate}</p><h3 className="mt-2 text-xl font-black"><Link href={`/blog/${post.slug}`}>{post.title}</Link></h3><p className="my-4 text-gray-600">{post.excerpt}</p><TagList tags={post.tags}/></article>}

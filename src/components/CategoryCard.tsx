@@ -1,0 +1,2 @@
+import Link from 'next/link';import type { Category } from '@/types/content';
+export function CategoryCard({category}:{category:Category}){return <Link href={`/guides/${category.slug}`} className={`block rounded-3xl bg-gradient-to-br ${category.gradient} p-6 shadow-sm`}><h3 className="text-xl font-black text-teal-950">{category.title}</h3><p className="mt-3 text-gray-700">{category.description}</p></Link>}

@@ -1,0 +1,3 @@
+import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { join } from 'node:path';
+const files=[];function walk(dir){for(const name of readdirSync(dir)){const path=join(dir,name);if(name==='node_modules'||name==='.next'||name==='.git')continue;const st=statSync(path);if(st.isDirectory())walk(path);else if(/\.(ts|tsx)$/.test(name))files.push(path)}}walk('src');let failed=false;for(const file of files){const text=readFileSync(file,'utf8');if(/\bany\b/.test(text)){console.error(`Avoid any in ${file}`);failed=true}if(/try\s*{\s*import/.test(text)){console.error(`Do not wrap imports in try/catch: ${file}`);failed=true}}if(failed)process.exit(1);console.log(`Checked ${files.length} TypeScript files.`);

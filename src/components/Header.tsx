@@ -1,0 +1,3 @@
+import Link from 'next/link';import { Container } from './Container';
+const links=[['/','Home'],['/about','About'],['/guides','Guides'],['/blog','Blog'],['/search','Search'],['/contact','Contact']];
+export function Header(){return <header className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur"><Container className="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between"><Link href="/" className="text-xl font-black text-teal-800">City Advisor Istanbul</Link><nav className="flex flex-wrap gap-3 text-sm font-semibold text-gray-700" aria-label="Main navigation">{links.map(([href,label])=><Link className="hover:text-orange-600" key={href} href={href}>{label}</Link>)}</nav></Container></header>}
