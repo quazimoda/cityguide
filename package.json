@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "lint": "node scripts/lint-check.mjs"
+    "lint": "eslint .",
+    "lint:source": "node scripts/lint-check.mjs"
   },
   "dependencies": {
     "next": "15.3.4",
