@@ -4,6 +4,7 @@ import { Container } from '@/components/Container';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { TagList } from '@/components/TagList';
 import { AdPlaceholder } from '@/components/AdPlaceholder';
+import { ArticleHeroImage } from '@/components/ArticleHeroImage';
 import { categories } from '@/data/categories';
 import { guides } from '@/data/guides';
 import { getCategory, getGuide } from '@/lib/content';
@@ -56,6 +57,7 @@ export default async function GuideDetail({ params }: PageProps) {
           <h1 className="mt-3 text-4xl font-black text-teal-950">{guide.title}</h1>
           <p className="my-5 text-lg text-gray-600">{guide.excerpt}</p>
           <TagList tags={guide.tags} />
+          <ArticleHeroImage image={guide.heroImage} priority />
           <div className="article mt-8">
             {guide.sections.map((section) => (
               <section key={section.heading}>

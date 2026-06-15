@@ -4,6 +4,7 @@ import { Container } from '@/components/Container';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { TagList } from '@/components/TagList';
 import { AdPlaceholder } from '@/components/AdPlaceholder';
+import { ArticleHeroImage } from '@/components/ArticleHeroImage';
 import { blogPosts } from '@/data/blog';
 import { getBlogPost } from '@/lib/content';
 
@@ -44,6 +45,7 @@ export default async function BlogPost({ params }: PageProps) {
           <h1 className="mt-3 text-4xl font-black text-teal-950">{post.title}</h1>
           <p className="my-5 text-lg text-gray-600">{post.excerpt}</p>
           <TagList tags={post.tags} />
+          <ArticleHeroImage image={post.heroImage} priority />
           <div className="article mt-8">
             {post.sections.map((section) => (
               <section key={section.heading}>
