@@ -90,12 +90,12 @@ export const istanbulImages = {
     sourceUrl: 'https://unsplash.com/photos/a-person-standing-on-a-trolley-PwqVMVeveiU',
   },
   weekendSunset: {
-    src: 'https://images.unsplash.com/photo-1725980457213-e718a2b7bb5a?auto=format&fit=crop&q=80&w=1600',
-    alt: 'Warm Istanbul sunset over the water for a relaxed weekend route',
-    photographer: 'Tolga Ahmetler',
-    photographerUrl: 'https://unsplash.com/@t_ahmetler',
+    src: 'https://images.unsplash.com/photo-1572280075160-be1ab588d4d6?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Mosque silhouette over the Bosphorus during an Istanbul golden-hour ferry ride',
+    photographer: 'Burak Alperen Yılmaz',
+    photographerUrl: 'https://unsplash.com/@bayilmaz26',
     source: 'Unsplash',
-    sourceUrl: 'https://unsplash.com/photos/the-sun-is-setting-over-the-ocean-with-a-sailboat-in-the-distance-kTZHJT7OO-I',
+    sourceUrl: 'https://unsplash.com/photos/mosque-silhouette-at-golden-hour-I5GwibvrfMA',
   },
 } satisfies Record<string, ImageAsset>;
 
