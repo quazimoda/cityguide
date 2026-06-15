@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint .",
-    "lint:source": "node scripts/lint-check.mjs"
+    "lint:source": "node scripts/lint-check.mjs",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck && npm run lint:source && npm run build"
   },
   "dependencies": {
     "next": "15.3.4",
