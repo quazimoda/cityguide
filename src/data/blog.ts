@@ -28,7 +28,7 @@ const blogData = [
       'Şehir Hatları official ferry timetables and route information for final schedule checks',
       'City Advisor Istanbul public transportation guide for durable ferry route logic',
     ],
-    heroImage: istanbulImages.galataFerryDusk,
+    heroImage: istanbulImages.ferryKadikoyDeck,
     sections: [
       {
         heading: 'The cinematic ferry shot hiding in plain sight',
@@ -46,7 +46,7 @@ const blogData = [
           'And because the subject is not standing in front of a famous monument, the photo feels less like a tourist postcard and more like a scene from a film.',
           'That is why the shot works: it captures not just Istanbul’s beauty, but the feeling of crossing it.',
         ],
-        image: istanbulImages.galataFerryDusk,
+        image: istanbulImages.ferrySternWake,
       },
       {
         heading: 'Where to Take the Shot',
@@ -56,7 +56,7 @@ const blogData = [
           'Try to shoot on a sunny or lightly cloudy day. Mid-morning and late afternoon usually give the most flattering light: bright enough for sparkle on the water, but not as harsh as midday sun.',
           'For route planning, pair this with the public transportation guide and the first-time visitors guide: they help you treat the ferry as part of your day, not a separate photo mission. Always check current ferry information before relying on a specific route or departure.',
         ],
-        image: istanbulImages.karakoyFerrySunset,
+        image: istanbulImages.ferryGoldenHourDeck,
       },
       {
         heading: 'How to Take the Photo',
@@ -67,7 +67,7 @@ const blogData = [
           'Do not overpose. The ferry already gives you movement. Try looking toward the horizon, turning your head naturally, holding the railing, closing your eyes for a second, or letting your hair and clothes move with the wind.',
           'The best ferry photos often look as if nobody was trying too hard. That is part of their charm.',
         ],
-        image: istanbulImages.galataFerryDusk,
+        image: istanbulImages.ferryWindowBosphorus,
       },
       {
         heading: 'How to Make the Viral Ferry Reel',
@@ -76,6 +76,7 @@ const blogData = [
           'A strong structure: start with a close-up, slowly reveal the water behind you, turn your head toward the sea, let the camera move slightly closer, and end with a wide shot of the wake, skyline, or seagulls.',
           'Keep the video short — around 5 to 10 seconds. For Instagram Reels and TikTok, a clean, atmospheric clip usually performs better than a long sequence with too many ideas.',
         ],
+        image: istanbulImages.ferrySeagulls,
       },
       {
         heading: 'Best Phone Settings',
@@ -93,7 +94,7 @@ const blogData = [
           '“A Side of Istanbul Most Tourists Miss” can begin in a busy street or crowded ferry terminal, then cut to the open deck: wind, water, silence, and the soft rhythm of the boat.',
           'This contrast is very Istanbul — noisy one minute, strangely peaceful the next. It also connects naturally with affordable Istanbul planning, because the ferry is both transport and one of the city’s best low-cost experiences.',
         ],
-        image: istanbulImages.marketDetails,
+        image: istanbulImages.ferryTeaDeck,
       },
       {
         heading: 'A Small But Important Tip',
@@ -110,7 +111,7 @@ const blogData = [
           'And in Istanbul, that happens more often than you expect.',
           'Istanbul City Advisor Tip: arrive 10–15 minutes before departure if you want a good spot at the back of the ferry. The first few minutes after leaving the pier are often the best for photos and reels: the wake is strong, the light is fresh, and most passengers are still finding their seats.',
         ],
-        image: istanbulImages.weekendSunset,
+        image: istanbulImages.galataFerryDusk,
       },
     ],
   },
