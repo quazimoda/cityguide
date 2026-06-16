@@ -84,7 +84,6 @@ export default async function BlogPost({ params }: PageProps) {
               </section>
             ))}
           </div>
-          <AdPlaceholder />
         </div>
         <AdPlaceholder offer={offer} sourceArticleSlug={post.slug} sourceLabel={post.title} />
       </article>

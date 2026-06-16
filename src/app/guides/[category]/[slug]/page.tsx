@@ -71,7 +71,6 @@ export default async function GuideDetail({ params }: PageProps) {
               </section>
             ))}
           </div>
-          <AdPlaceholder />
         </div>
         <AdPlaceholder offer={offer} sourceArticleSlug={guide.slug} sourceLabel={guide.title} />
       </article>
