@@ -6,7 +6,8 @@ import { GuideCard } from '@/components/GuideCard';
 import { BlogCard } from '@/components/BlogCard';
 import { RecommendationCard } from '@/components/RecommendationCard';
 import { SubscribeForm } from '@/components/SubscribeForm';
-import { ExcursionOrderCta } from '@/components/ExcursionOrderCta';
+import { AdPlaceholder } from '@/components/AdPlaceholder';
+import { experienceOffers } from '@/data/offers';
 import { categories } from '@/data/categories';
 import { guides } from '@/data/guides';
 import { blogPosts } from '@/data/blog';
@@ -26,11 +27,7 @@ export default function Home() {
         ]}
       />
       <Container className="py-10">
-        <ExcursionOrderCta
-          variant="compact"
-          sourceLabel="Homepage promo"
-          title="Want a guided ferry photo session?"
-        />
+        <AdPlaceholder offer={experienceOffers.firstTimeWalk} sourceLabel="Homepage private experiences" />
       </Container>
       <Container className="py-12">
         <SectionHeader

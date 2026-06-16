@@ -7,6 +7,7 @@ import { AdPlaceholder } from '@/components/AdPlaceholder';
 import { ArticleHeroImage } from '@/components/ArticleHeroImage';
 import { categories } from '@/data/categories';
 import { guides } from '@/data/guides';
+import { getExperienceOfferForContext } from '@/data/offers';
 import { getCategory, getGuide } from '@/lib/content';
 
 type PageProps = {
@@ -40,6 +41,8 @@ export default async function GuideDetail({ params }: PageProps) {
     notFound();
   }
 
+  const offer = getExperienceOfferForContext(`${guide.slug} ${guide.category} ${guide.tags.join(' ')}`);
+
   return (
     <Container className="py-8">
       <Breadcrumbs
@@ -70,7 +73,7 @@ export default async function GuideDetail({ params }: PageProps) {
           </div>
           <AdPlaceholder />
         </div>
-        <AdPlaceholder />
+        <AdPlaceholder offer={offer} sourceArticleSlug={guide.slug} sourceLabel={guide.title} />
       </article>
     </Container>
   );
