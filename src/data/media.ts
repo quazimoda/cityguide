@@ -118,6 +118,59 @@ export const istanbulImages = {
     sourceUrl:
       'https://unsplash.com/photos/beautiful-street-scene-in-istanbul-turkey-rrOLQzRccDo',
   },
+  ferrySternWake: {
+    src: 'https://images.unsplash.com/photo-1664225329087-096e9f9179d1?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Foamy white wake trailing behind a boat in Istanbul seen from the stern railing',
+    photographer: 'durapic',
+    photographerUrl: 'https://unsplash.com/@durapic',
+    source: 'Unsplash',
+    sourceUrl: 'https://unsplash.com/photos/a-boat-on-the-water-82eYs9_7GH4',
+  },
+  ferryWindowBosphorus: {
+    src: 'https://images.unsplash.com/photo-1668002957920-28ce02c3444b?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Passenger standing by an Istanbul ferry window with the Bosphorus and city shoreline outside',
+    photographer: 'Beyza Yurtkuran',
+    photographerUrl: 'https://unsplash.com/@beyzaayurtkuran',
+    source: 'Unsplash',
+    sourceUrl:
+      'https://unsplash.com/photos/a-man-and-a-child-looking-out-a-window-at-the-water-oFIDy3lZ6X4',
+  },
+  ferryKadikoyDeck: {
+    src: 'https://images.unsplash.com/photo-1653326727373-04f7bdc9a44a?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Passengers looking out from an Istanbul ferry deck during a Kadıköy crossing',
+    photographer: 'Ayesha Azhar',
+    photographerUrl: 'https://unsplash.com/@ashooman',
+    source: 'Unsplash',
+    sourceUrl:
+      'https://unsplash.com/photos/a-couple-of-people-sitting-on-top-of-a-boat-5qP9jEY3UoE',
+  },
+  ferrySeagulls: {
+    src: 'https://images.unsplash.com/photo-1612617397200-8362bc943e20?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Istanbul ferry at the pier with seagulls above the Bosphorus',
+    photographer: 'Adem Percem',
+    photographerUrl: 'https://unsplash.com/@adempercem',
+    source: 'Unsplash',
+    sourceUrl:
+      'https://unsplash.com/photos/ferry-boat-sailing-on-the-water-with-seagulls-x_QUscFzOzU',
+  },
+  ferryTeaDeck: {
+    src: 'https://images.unsplash.com/photo-1695834480584-e9914ca6dbcf?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Turkish tea glasses on an Istanbul ferry deck with the Bosphorus and skyline beyond the railing',
+    photographer: 'Tolga Ahmetler',
+    photographerUrl: 'https://unsplash.com/@t_ahmetler',
+    source: 'Unsplash',
+    sourceUrl:
+      'https://unsplash.com/photos/a-view-of-a-city-from-a-boat-on-the-water-PfSsBtrKYAc',
+  },
+  ferryGoldenHourDeck: {
+    src: 'https://images.unsplash.com/photo-1719178038016-da87444842da?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Passengers on an Istanbul ferry deck in golden-hour light with the Bosphorus behind them',
+    photographer: 'Kamil Kalkan',
+    photographerUrl: 'https://unsplash.com/@kamilkalkan',
+    source: 'Unsplash',
+    sourceUrl:
+      'https://unsplash.com/photos/a-group-of-people-sitting-on-top-of-a-red-bench-LYyA_szcIh0',
+  },
   weekendSunset: {
     src: 'https://images.unsplash.com/photo-1572280075160-be1ab588d4d6?auto=format&fit=crop&q=80&w=1600',
     alt: 'Mosque silhouette over the Bosphorus during an Istanbul golden-hour ferry ride',
