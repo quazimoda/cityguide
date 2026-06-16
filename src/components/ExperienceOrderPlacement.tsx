@@ -91,10 +91,10 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
         sourceLabel,
       }),
     });
-    const result = (await response.json().catch(() => null)) as { success?: boolean; error?: string } | null;
+    const result = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
 
     setIsSubmitting(false);
-    if (!response.ok || !result?.success) {
+    if (!response.ok || !result?.ok) {
       setStatus(result?.error ?? 'Please check the form and try again.');
       return;
     }
