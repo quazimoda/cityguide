@@ -7,7 +7,8 @@ export const istanbulImages = {
     photographer: 'Ilker Ozmen',
     photographerUrl: 'https://unsplash.com/@iozmen',
     source: 'Unsplash',
-    sourceUrl: 'https://unsplash.com/photos/view-of-istanbul-from-a-boat-S4h9xubtlrA',
+    sourceUrl:
+      'https://unsplash.com/photos/view-of-istanbul-from-a-boat-S4h9xubtlrA',
   },
   bosphorusSkyline: {
     src: 'https://images.unsplash.com/photo-1706440326824-5d17dab2a4e9?auto=format&fit=crop&q=80&w=1600',
@@ -15,7 +16,8 @@ export const istanbulImages = {
     photographer: 'Maxim Klimashin',
     photographerUrl: 'https://unsplash.com/@maxim_klimashin',
     source: 'Unsplash',
-    sourceUrl: 'https://unsplash.com/photos/a-harbor-filled-with-lots-of-boats-next-to-a-city-5AxL0OGOKYc',
+    sourceUrl:
+      'https://unsplash.com/photos/a-harbor-filled-with-lots-of-boats-next-to-a-city-5AxL0OGOKYc',
   },
   balatColorfulStreet: {
     src: 'https://images.unsplash.com/photo-1774519245399-29f28b971ea6?auto=format&fit=crop&q=80&w=1600',
@@ -23,7 +25,8 @@ export const istanbulImages = {
     photographer: 'waa towaw',
     photographerUrl: 'https://unsplash.com/@toowaaw',
     source: 'Unsplash',
-    sourceUrl: 'https://unsplash.com/photos/yellow-taxi-drives-down-a-street-with-tram-tracks-3srkdLBvbTU',
+    sourceUrl:
+      'https://unsplash.com/photos/yellow-taxi-drives-down-a-street-with-tram-tracks-3srkdLBvbTU',
   },
   marketDetails: {
     src: 'https://images.unsplash.com/photo-1666601082513-ba83b4f90c32?auto=format&fit=crop&q=80&w=1600',
@@ -39,7 +42,8 @@ export const istanbulImages = {
     photographer: 'Milad Fakurian',
     photographerUrl: 'https://unsplash.com/@fakurian',
     source: 'Unsplash',
-    sourceUrl: 'https://unsplash.com/photos/a-cozy-cafe-glows-warmly-at-night-WQBuCB3UD9g',
+    sourceUrl:
+      'https://unsplash.com/photos/a-cozy-cafe-glows-warmly-at-night-WQBuCB3UD9g',
   },
   karakoyFerrySunset: {
     src: 'https://images.unsplash.com/photo-1771622218533-7f2c8ee8d89e?auto=format&fit=crop&q=80&w=1600',
@@ -47,7 +51,8 @@ export const istanbulImages = {
     photographer: 'ONUR KURT',
     photographerUrl: 'https://unsplash.com/@bykurt',
     source: 'Unsplash',
-    sourceUrl: 'https://unsplash.com/photos/people-boarding-a-ferry-at-a-dock-VG0T2IpZSDc',
+    sourceUrl:
+      'https://unsplash.com/photos/people-boarding-a-ferry-at-a-dock-VG0T2IpZSDc',
   },
   galataTowerStreet: {
     src: 'https://images.unsplash.com/photo-1747156684442-831e095f97c2?auto=format&fit=crop&q=80&w=1600',
@@ -55,7 +60,8 @@ export const istanbulImages = {
     photographer: 'Alexandra',
     photographerUrl: 'https://unsplash.com/@alexandra_p_d',
     source: 'Unsplash',
-    sourceUrl: 'https://unsplash.com/photos/galata-tower-towers-over-istanbuls-waterfront-IrklOUpVbE4',
+    sourceUrl:
+      'https://unsplash.com/photos/galata-tower-towers-over-istanbuls-waterfront-IrklOUpVbE4',
   },
   suleymaniyeClassic: {
     src: 'https://images.unsplash.com/photo-1669935805976-6ca0db5833c8?auto=format&fit=crop&q=80&w=1600',
@@ -63,7 +69,8 @@ export const istanbulImages = {
     photographer: 'ekrem osmanoglu',
     photographerUrl: 'https://unsplash.com/@konevi',
     source: 'Unsplash',
-    sourceUrl: 'https://unsplash.com/photos/a-large-building-with-towers-WB9qTSK-gE4',
+    sourceUrl:
+      'https://unsplash.com/photos/a-large-building-with-towers-WB9qTSK-gE4',
   },
   istanbulStreetLife: {
     src: 'https://images.unsplash.com/photo-1741079746677-5f25b2de7fa0?auto=format&fit=crop&q=80&w=1600',
@@ -71,7 +78,8 @@ export const istanbulImages = {
     photographer: 'Tolga Ahmetler',
     photographerUrl: 'https://unsplash.com/@t_ahmetler',
     source: 'Unsplash',
-    sourceUrl: 'https://unsplash.com/photos/a-person-walks-past-a-lit-up-corner-store-5CSAieKXeuc',
+    sourceUrl:
+      'https://unsplash.com/photos/a-person-walks-past-a-lit-up-corner-store-5CSAieKXeuc',
   },
   cafeTable: {
     src: 'https://images.unsplash.com/photo-1483274816418-3975509c8f78?auto=format&fit=crop&q=80&w=1600',
@@ -79,7 +87,8 @@ export const istanbulImages = {
     photographer: 'Sabri Tuzcu',
     photographerUrl: 'https://unsplash.com/@sabrituzcu',
     source: 'Unsplash',
-    sourceUrl: 'https://unsplash.com/photos/photography-of-brown-pedestal-table-g-erOiuDxro',
+    sourceUrl:
+      'https://unsplash.com/photos/photography-of-brown-pedestal-table-g-erOiuDxro',
   },
   tramTransport: {
     src: 'https://images.unsplash.com/photo-1650801117384-c183bd0f8d52?auto=format&fit=crop&q=80&w=1600',
@@ -87,7 +96,27 @@ export const istanbulImages = {
     photographer: 'Slavcho Malezan',
     photographerUrl: 'https://unsplash.com/@smalezan',
     source: 'Unsplash',
-    sourceUrl: 'https://unsplash.com/photos/a-person-standing-on-a-trolley-PwqVMVeveiU',
+    sourceUrl:
+      'https://unsplash.com/photos/a-person-standing-on-a-trolley-PwqVMVeveiU',
+  },
+
+  beyogluSideStreet: {
+    src: 'https://images.unsplash.com/photo-1758894740385-57c581781402?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Pedestrians walking along a narrow Beyoğlu side street lined with historic Istanbul buildings',
+    photographer: 'kai muro',
+    photographerUrl: 'https://unsplash.com/@turuturu',
+    source: 'Unsplash',
+    sourceUrl:
+      'https://unsplash.com/photos/people-walk-down-a-bustling-european-street-with-shops-Mtszp694kgE',
+  },
+  istanbulParkCanopy: {
+    src: 'https://images.unsplash.com/photo-1747648088747-d928e5729873?auto=format&fit=crop&q=80&w=1600',
+    alt: 'Leafy Istanbul street and historic building shaded by mature trees',
+    photographer: 'Musa Ortaç',
+    photographerUrl: 'https://unsplash.com/@musaortac',
+    source: 'Unsplash',
+    sourceUrl:
+      'https://unsplash.com/photos/beautiful-street-scene-in-istanbul-turkey-rrOLQzRccDo',
   },
   weekendSunset: {
     src: 'https://images.unsplash.com/photo-1572280075160-be1ab588d4d6?auto=format&fit=crop&q=80&w=1600',
@@ -95,7 +124,8 @@ export const istanbulImages = {
     photographer: 'Burak Alperen Yılmaz',
     photographerUrl: 'https://unsplash.com/@bayilmaz26',
     source: 'Unsplash',
-    sourceUrl: 'https://unsplash.com/photos/mosque-silhouette-at-golden-hour-I5GwibvrfMA',
+    sourceUrl:
+      'https://unsplash.com/photos/mosque-silhouette-at-golden-hour-I5GwibvrfMA',
   },
 } satisfies Record<string, ImageAsset>;
 
