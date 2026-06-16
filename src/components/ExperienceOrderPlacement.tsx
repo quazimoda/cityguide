@@ -1,7 +1,7 @@
 'use client';
 
 import type React from 'react';
-import { useId, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import type { ExperienceOffer } from '@/data/offers';
 
 type Props = {
@@ -31,10 +31,38 @@ function initialForm(): FormState {
 export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug, sourcePageUrl, className = '' }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const pendingSubmissionRef = useRef(false);
+  const closeTimeoutRef = useRef<number | null>(null);
   const [form, setForm] = useState<FormState>(() => initialForm());
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [status, setStatus] = useState('');
   const headingId = useId();
+
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current !== null) window.clearTimeout(closeTimeoutRef.current);
+    };
+  }, []);
+
+  function resetFormState() {
+    setForm(initialForm());
+    setErrors({});
+    setStatus('');
+    if (!pendingSubmissionRef.current) setIsSubmitting(false);
+    setHasSubmitted(false);
+  }
+
+  function closeForm() {
+    if (pendingSubmissionRef.current) return;
+    if (closeTimeoutRef.current !== null) {
+      window.clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setIsOpen(false);
+    resetFormState();
+  }
+
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((current) => ({ ...current, [key]: value }));
     setErrors((current) => ({ ...current, [key]: undefined }));
@@ -53,8 +81,10 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
-    if (isSubmitting || !validate()) return;
+    if (pendingSubmissionRef.current || hasSubmitted || !validate()) return;
+    pendingSubmissionRef.current = true;
     setIsSubmitting(true);
+    setHasSubmitted(false);
     setStatus('');
 
     const currentPageUrl = typeof window !== 'undefined' ? window.location.href : sourcePageUrl;
@@ -75,6 +105,7 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
         }),
       });
     } catch {
+      pendingSubmissionRef.current = false;
       setIsSubmitting(false);
       setStatus('Unable to submit request. Please try again.');
       return;
@@ -82,18 +113,19 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
 
     const result = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
 
+    pendingSubmissionRef.current = false;
     setIsSubmitting(false);
     if (!response.ok || !result?.ok) {
       setStatus(result?.error ?? 'Please check the form and try again.');
       return;
     }
 
+    setHasSubmitted(true);
     setStatus('Request received. We will contact you to confirm availability and payment details.');
-    window.setTimeout(() => {
+    closeTimeoutRef.current = window.setTimeout(() => {
+      closeTimeoutRef.current = null;
       setIsOpen(false);
-      setForm(initialForm());
-      setErrors({});
-      setStatus('');
+      resetFormState();
     }, 1200);
   }
 
@@ -123,7 +155,7 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
                 <h2 id={headingId} className="text-2xl font-black text-teal-950">Send request</h2>
                 <p className="mt-1 text-sm text-gray-600">{offer.offerName}</p>
               </div>
-              <button type="button" onClick={() => setIsOpen(false)} className="rounded-full px-3 py-1 text-2xl text-gray-500 hover:bg-gray-100" aria-label="Close order form">×</button>
+              <button type="button" onClick={closeForm} disabled={isSubmitting} className="rounded-full px-3 py-1 text-2xl text-gray-500 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50" aria-label="Close order form">×</button>
             </div>
             <form onSubmit={submit} className="mt-5 grid gap-4 md:grid-cols-2">
               <Field label="Name" error={errors.name}><input value={form.name} onChange={(e) => update('name', e.target.value)} className="w-full rounded-xl border p-3" /></Field>
@@ -131,7 +163,7 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
               <Field label="Preferred time" error={errors.preferredTime}><input value={form.preferredTime} onChange={(e) => update('preferredTime', e.target.value)} className="w-full rounded-xl border p-3" /></Field>
               <Field label="Message" error={errors.message} className="md:col-span-2"><textarea value={form.message} maxLength={2000} onChange={(e) => update('message', e.target.value)} className="min-h-24 w-full rounded-xl border p-3" /></Field>
               <div className="md:col-span-2 flex flex-wrap items-center gap-3">
-                <button disabled={isSubmitting} className="rounded-xl bg-teal-700 px-5 py-3 font-bold text-white disabled:cursor-not-allowed disabled:opacity-60">{isSubmitting ? 'Sending…' : 'Send request'}</button>
+                <button disabled={isSubmitting || hasSubmitted} className="rounded-xl bg-teal-700 px-5 py-3 font-bold text-white disabled:cursor-not-allowed disabled:opacity-60">{isSubmitting ? 'Sending…' : 'Send request'}</button>
                 {status ? <p className="text-sm font-semibold text-teal-800">{status}</p> : null}
               </div>
             </form>
