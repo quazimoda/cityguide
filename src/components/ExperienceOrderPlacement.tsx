@@ -32,6 +32,7 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const pendingSubmissionRef = useRef(false);
   const closeTimeoutRef = useRef<number | null>(null);
   const [form, setForm] = useState<FormState>(() => initialForm());
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
@@ -48,11 +49,12 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
     setForm(initialForm());
     setErrors({});
     setStatus('');
-    setIsSubmitting(false);
+    if (!pendingSubmissionRef.current) setIsSubmitting(false);
     setHasSubmitted(false);
   }
 
   function closeForm() {
+    if (pendingSubmissionRef.current) return;
     if (closeTimeoutRef.current !== null) {
       window.clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
@@ -79,7 +81,8 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
-    if (isSubmitting || hasSubmitted || !validate()) return;
+    if (pendingSubmissionRef.current || hasSubmitted || !validate()) return;
+    pendingSubmissionRef.current = true;
     setIsSubmitting(true);
     setHasSubmitted(false);
     setStatus('');
@@ -102,6 +105,7 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
         }),
       });
     } catch {
+      pendingSubmissionRef.current = false;
       setIsSubmitting(false);
       setStatus('Unable to submit request. Please try again.');
       return;
@@ -109,6 +113,7 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
 
     const result = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
 
+    pendingSubmissionRef.current = false;
     setIsSubmitting(false);
     if (!response.ok || !result?.ok) {
       setStatus(result?.error ?? 'Please check the form and try again.');
@@ -150,7 +155,7 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
                 <h2 id={headingId} className="text-2xl font-black text-teal-950">Send request</h2>
                 <p className="mt-1 text-sm text-gray-600">{offer.offerName}</p>
               </div>
-              <button type="button" onClick={closeForm} className="rounded-full px-3 py-1 text-2xl text-gray-500 hover:bg-gray-100" aria-label="Close order form">×</button>
+              <button type="button" onClick={closeForm} disabled={isSubmitting} className="rounded-full px-3 py-1 text-2xl text-gray-500 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50" aria-label="Close order form">×</button>
             </div>
             <form onSubmit={submit} className="mt-5 grid gap-4 md:grid-cols-2">
               <Field label="Name" error={errors.name}><input value={form.name} onChange={(e) => update('name', e.target.value)} className="w-full rounded-xl border p-3" /></Field>
