@@ -26,6 +26,12 @@ export const categories: Category[] = [
     gradient: 'from-teal-200 to-cyan-100',
   },
   {
+    title: 'Budget',
+    slug: 'budget',
+    description: 'Money-smart Istanbul guides for free views, public ferries, affordable routes, low-cost culture, parks, and practical city savings.',
+    gradient: 'from-emerald-200 to-orange-100',
+  },
+  {
     title: 'Hidden Gems',
     slug: 'hidden-gems',
     description: 'Respectful guides to quieter streets, viewpoints, local-feeling walks, and overlooked Istanbul experiences beyond rushed checklists.',

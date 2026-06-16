@@ -297,7 +297,7 @@ const blogData = [
       'Şehir Hatları official domestic and Bosphorus ferry timetable pages',
       'Official venue pages for public cultural spaces including SALT Galata, Casa Botter, and Yapı Kredi Culture and Arts',
     ],
-    heroImage: istanbulImages.karakoyFerrySunset,
+    heroImage: istanbulImages.weekendSunset,
     sections: [
       {
         heading: 'Istanbul has a talent for making you forget your budget',
