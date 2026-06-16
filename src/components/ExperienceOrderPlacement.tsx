@@ -1,7 +1,7 @@
 'use client';
 
 import type React from 'react';
-import { useId, useMemo, useState } from 'react';
+import { useId, useState } from 'react';
 import type { ExperienceOffer } from '@/data/offers';
 
 type Props = {
@@ -14,46 +14,27 @@ type Props = {
 
 type FormState = {
   name: string;
-  email: string;
-  preferredDate: string;
-  people: string;
   message: string;
   phone: string;
   preferredTime: string;
-  socialHandle: string;
 };
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function initialForm(offer: ExperienceOffer): FormState {
+function initialForm(): FormState {
   return {
     name: '',
-    email: '',
-    preferredDate: '',
-    people: '1',
-    message:
-      offer.key === 'ferryPhoto'
-        ? 'I want to book the ferry photo and reel experience.'
-        : offer.defaultMessage,
+    message: 'I want to book this experience.',
     phone: '',
     preferredTime: '',
-    socialHandle: '',
   };
 }
 
 export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug, sourcePageUrl, className = '' }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [form, setForm] = useState<FormState>(() => initialForm(offer));
+  const [form, setForm] = useState<FormState>(() => initialForm());
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [status, setStatus] = useState('');
   const headingId = useId();
-  const source = useMemo(() => {
-    if (sourcePageUrl) return sourcePageUrl;
-    if (typeof window !== 'undefined') return window.location.href;
-    return '';
-  }, [sourcePageUrl]);
-
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((current) => ({ ...current, [key]: value }));
     setErrors((current) => ({ ...current, [key]: undefined }));
@@ -62,10 +43,8 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
   function validate() {
     const nextErrors: Partial<Record<keyof FormState, string>> = {};
     if (!form.name.trim()) nextErrors.name = 'Name is required.';
-    if (!form.email.trim()) nextErrors.email = 'Email is required.';
-    else if (!emailPattern.test(form.email)) nextErrors.email = 'Enter a valid email address.';
-    if (!form.preferredDate) nextErrors.preferredDate = 'Preferred date is required.';
-    if (!form.people || Number(form.people) < 1) nextErrors.people = 'Enter at least 1 person.';
+    if (!form.phone.trim()) nextErrors.phone = 'Phone / WhatsApp is required.';
+    if (!form.preferredTime.trim()) nextErrors.preferredTime = 'Preferred time is required.';
     if (!form.message.trim()) nextErrors.message = 'Message is required.';
     else if (form.message.length > 2000) nextErrors.message = 'Message must be 2000 characters or fewer.';
     setErrors(nextErrors);
@@ -78,19 +57,29 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
     setIsSubmitting(true);
     setStatus('');
 
-    const response = await fetch('/api/excursion-order', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...form,
-        offerName: offer.offerName,
-        price: offer.price,
-        duration: offer.duration,
-        sourcePageUrl: source,
-        sourceArticleSlug,
-        sourceLabel,
-      }),
-    });
+    const currentPageUrl = typeof window !== 'undefined' ? window.location.href : sourcePageUrl;
+    let response: Response;
+
+    try {
+      response = await fetch('/api/excursion-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...form,
+          offerName: offer.offerName,
+          price: offer.price,
+          duration: offer.duration,
+          sourcePageUrl: currentPageUrl ?? '',
+          sourceArticleSlug: sourceArticleSlug ?? '',
+          sourceLabel: sourceLabel ?? '',
+        }),
+      });
+    } catch {
+      setIsSubmitting(false);
+      setStatus('Unable to submit request. Please try again.');
+      return;
+    }
+
     const result = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
 
     setIsSubmitting(false);
@@ -100,7 +89,12 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
     }
 
     setStatus('Request received. We will contact you to confirm availability and payment details.');
-    setForm(initialForm(offer));
+    window.setTimeout(() => {
+      setIsOpen(false);
+      setForm(initialForm());
+      setErrors({});
+      setStatus('');
+    }, 1200);
   }
 
   return (
@@ -133,17 +127,9 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
             </div>
             <form onSubmit={submit} className="mt-5 grid gap-4 md:grid-cols-2">
               <Field label="Name" error={errors.name}><input value={form.name} onChange={(e) => update('name', e.target.value)} className="w-full rounded-xl border p-3" /></Field>
-              <Field label="Email" error={errors.email}><input value={form.email} onChange={(e) => update('email', e.target.value)} className="w-full rounded-xl border p-3" type="email" /></Field>
-              <Field label="Preferred date" error={errors.preferredDate}><input value={form.preferredDate} onChange={(e) => update('preferredDate', e.target.value)} className="w-full rounded-xl border p-3" type="date" /></Field>
-              <Field label="Number of people" error={errors.people}><input value={form.people} onChange={(e) => update('people', e.target.value)} className="w-full rounded-xl border p-3" type="number" min="1" /></Field>
-              <Field label="WhatsApp / phone (optional)"><input value={form.phone} onChange={(e) => update('phone', e.target.value)} className="w-full rounded-xl border p-3" /></Field>
-              <Field label="Preferred time (optional)"><input value={form.preferredTime} onChange={(e) => update('preferredTime', e.target.value)} className="w-full rounded-xl border p-3" /></Field>
-              <Field label="Instagram / TikTok handle (optional)" className="md:col-span-2"><input value={form.socialHandle} onChange={(e) => update('socialHandle', e.target.value)} className="w-full rounded-xl border p-3" /></Field>
+              <Field label="Phone / WhatsApp" error={errors.phone}><input value={form.phone} onChange={(e) => update('phone', e.target.value)} className="w-full rounded-xl border p-3" /></Field>
+              <Field label="Preferred time" error={errors.preferredTime}><input value={form.preferredTime} onChange={(e) => update('preferredTime', e.target.value)} className="w-full rounded-xl border p-3" /></Field>
               <Field label="Message" error={errors.message} className="md:col-span-2"><textarea value={form.message} maxLength={2000} onChange={(e) => update('message', e.target.value)} className="min-h-24 w-full rounded-xl border p-3" /></Field>
-              <div className="md:col-span-2 rounded-2xl bg-gray-50 p-3 text-xs text-gray-600">
-                <p>Offer: {offer.offerName} · {offer.price} · {offer.duration}</p>
-                <p>Source page: {source || 'Current page'}</p>
-              </div>
               <div className="md:col-span-2 flex flex-wrap items-center gap-3">
                 <button disabled={isSubmitting} className="rounded-xl bg-teal-700 px-5 py-3 font-bold text-white disabled:cursor-not-allowed disabled:opacity-60">{isSubmitting ? 'Sending…' : 'Send request'}</button>
                 {status ? <p className="text-sm font-semibold text-teal-800">{status}</p> : null}
