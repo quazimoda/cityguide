@@ -1,15 +1,10 @@
 import { NextResponse } from 'next/server';
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 const requiredEnvVars = [
   'GOOGLE_FORM_ACTION_URL',
   'GOOGLE_FORM_ENTRY_NAME',
-  'GOOGLE_FORM_ENTRY_EMAIL',
   'GOOGLE_FORM_ENTRY_PHONE',
-  'GOOGLE_FORM_ENTRY_PREFERRED_DATE',
   'GOOGLE_FORM_ENTRY_PREFERRED_TIME',
-  'GOOGLE_FORM_ENTRY_PEOPLE',
   'GOOGLE_FORM_ENTRY_MESSAGE',
   'GOOGLE_FORM_ENTRY_OFFER_NAME',
   'GOOGLE_FORM_ENTRY_PRICE',
@@ -17,16 +12,16 @@ const requiredEnvVars = [
   'GOOGLE_FORM_ENTRY_SOURCE_PAGE_URL',
   'GOOGLE_FORM_ENTRY_SOURCE_ARTICLE_SLUG',
   'GOOGLE_FORM_ENTRY_SOURCE_LABEL',
-  'GOOGLE_FORM_ENTRY_SUBMITTED_AT',
 ] as const;
 
-type EnvVarName = (typeof requiredEnvVars)[number];
+const optionalEnvVars = ['GOOGLE_FORM_ENTRY_SUBMITTED_AT'] as const;
+
+type RequiredEnvVarName = (typeof requiredEnvVars)[number];
+type OptionalEnvVarName = (typeof optionalEnvVars)[number];
+type GoogleFormConfig = Record<RequiredEnvVarName, string> & Partial<Record<OptionalEnvVarName, string>>;
 
 type OrderPayload = {
   name?: unknown;
-  email?: unknown;
-  preferredDate?: unknown;
-  people?: unknown;
   message?: unknown;
   offerName?: unknown;
   price?: unknown;
@@ -36,14 +31,12 @@ type OrderPayload = {
   sourceLabel?: unknown;
   phone?: unknown;
   preferredTime?: unknown;
-  socialHandle?: unknown;
 };
 
 type ValidatedOrder = {
   name: string;
-  email: string;
-  preferredDate: string;
-  people: number;
+  phone: string;
+  preferredTime: string;
   message: string;
   offerName: string;
   price: string;
@@ -51,8 +44,6 @@ type ValidatedOrder = {
   sourcePageUrl: string;
   sourceArticleSlug: string;
   sourceLabel: string;
-  phone: string;
-  preferredTime: string;
 };
 
 function asString(value: unknown) {
@@ -60,12 +51,17 @@ function asString(value: unknown) {
 }
 
 function getGoogleFormConfig() {
-  const config = {} as Record<EnvVarName, string>;
+  const config = {} as GoogleFormConfig;
   const missing = requiredEnvVars.filter((name) => {
     const value = process.env[name];
     if (value) config[name] = value;
     return !value;
   });
+
+  for (const name of optionalEnvVars) {
+    const value = process.env[name];
+    if (value) config[name] = value;
+  }
 
   if (missing.length > 0) {
     console.error('Excursion order backend is missing Google Form environment variables:', missing.join(', '));
@@ -77,25 +73,12 @@ function getGoogleFormConfig() {
 
 function validatePayload(payload: OrderPayload): { data: ValidatedOrder } | { error: string } {
   const name = asString(payload.name);
-  const email = asString(payload.email);
-  const preferredDate = asString(payload.preferredDate);
-  const people = Number(payload.people);
+  const phone = asString(payload.phone);
+  const preferredTime = asString(payload.preferredTime);
   const message = asString(payload.message);
-  const offerName = asString(payload.offerName);
-  const price = asString(payload.price);
-  const duration = asString(payload.duration);
-  const sourcePageUrl = asString(payload.sourcePageUrl);
 
-  if (!name || !email || !preferredDate || !message || !offerName || !price || !duration || !sourcePageUrl) {
+  if (!name || !phone || !preferredTime || !message) {
     return { error: 'Please complete all required fields.' };
-  }
-
-  if (!emailPattern.test(email)) {
-    return { error: 'Enter a valid email address.' };
-  }
-
-  if (!Number.isFinite(people) || people < 1) {
-    return { error: 'Enter at least 1 person.' };
   }
 
   if (message.length > 2000) {
@@ -105,31 +88,25 @@ function validatePayload(payload: OrderPayload): { data: ValidatedOrder } | { er
   return {
     data: {
       name,
-      email,
-      preferredDate,
-      people,
+      phone,
+      preferredTime,
       message,
-      offerName,
-      price,
-      duration,
-      sourcePageUrl,
+      offerName: asString(payload.offerName),
+      price: asString(payload.price),
+      duration: asString(payload.duration),
+      sourcePageUrl: asString(payload.sourcePageUrl),
       sourceArticleSlug: asString(payload.sourceArticleSlug),
       sourceLabel: asString(payload.sourceLabel),
-      phone: asString(payload.phone),
-      preferredTime: asString(payload.preferredTime),
     },
   };
 }
 
-function buildGoogleFormData(config: Record<EnvVarName, string>, validated: ValidatedOrder, submittedAt: string) {
+function buildGoogleFormData(config: GoogleFormConfig, validated: ValidatedOrder, submittedAt: string) {
   const formData = new URLSearchParams();
 
   formData.set(config.GOOGLE_FORM_ENTRY_NAME, validated.name);
-  formData.set(config.GOOGLE_FORM_ENTRY_EMAIL, validated.email);
   formData.set(config.GOOGLE_FORM_ENTRY_PHONE, validated.phone);
-  formData.set(config.GOOGLE_FORM_ENTRY_PREFERRED_DATE, validated.preferredDate);
   formData.set(config.GOOGLE_FORM_ENTRY_PREFERRED_TIME, validated.preferredTime);
-  formData.set(config.GOOGLE_FORM_ENTRY_PEOPLE, String(validated.people));
   formData.set(config.GOOGLE_FORM_ENTRY_MESSAGE, validated.message);
   formData.set(config.GOOGLE_FORM_ENTRY_OFFER_NAME, validated.offerName);
   formData.set(config.GOOGLE_FORM_ENTRY_PRICE, validated.price);
@@ -137,7 +114,10 @@ function buildGoogleFormData(config: Record<EnvVarName, string>, validated: Vali
   formData.set(config.GOOGLE_FORM_ENTRY_SOURCE_PAGE_URL, validated.sourcePageUrl);
   formData.set(config.GOOGLE_FORM_ENTRY_SOURCE_ARTICLE_SLUG, validated.sourceArticleSlug);
   formData.set(config.GOOGLE_FORM_ENTRY_SOURCE_LABEL, validated.sourceLabel);
-  formData.set(config.GOOGLE_FORM_ENTRY_SUBMITTED_AT, submittedAt);
+
+  if (config.GOOGLE_FORM_ENTRY_SUBMITTED_AT) {
+    formData.set(config.GOOGLE_FORM_ENTRY_SUBMITTED_AT, submittedAt);
+  }
 
   return formData;
 }
