@@ -8,11 +8,13 @@ import { ArticleHeroImage } from '@/components/ArticleHeroImage';
 import { ImageCredit } from '@/components/ImageCredit';
 import { SafeImage } from '@/components/SafeImage';
 import { blogPosts } from '@/data/blog';
+import { getExperienceOfferForContext } from '@/data/offers';
 import { getBlogPost } from '@/lib/content';
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
+
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -37,6 +39,8 @@ export default async function BlogPost({ params }: PageProps) {
   if (!post) {
     notFound();
   }
+
+  const offer = getExperienceOfferForContext(`${post.slug} ${post.category} ${post.tags.join(' ')}`);
 
   return (
     <Container className='py-8'>
@@ -80,9 +84,8 @@ export default async function BlogPost({ params }: PageProps) {
               </section>
             ))}
           </div>
-          <AdPlaceholder />
         </div>
-        <AdPlaceholder />
+        <AdPlaceholder offer={offer} sourceArticleSlug={post.slug} sourceLabel={post.title} />
       </article>
     </Container>
   );
