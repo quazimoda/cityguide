@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import { Container } from './Container';
+import { HeroVideoBackground } from './HeroVideoBackground';
 import { SafeImage } from './SafeImage';
 import type { ImageAsset } from '@/types/media';
 
@@ -28,18 +29,7 @@ export function Hero({ title, subtitle, image, video, ctas }: HeroProps) {
       <section className="relative isolate overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 -z-10">
           {video ? (
-            <video
-              aria-hidden="true"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster={video.poster}
-              className="hero-flight-video h-full w-full object-cover"
-            >
-              <source src={video.src} type="video/mp4" />
-            </video>
+            <HeroVideoBackground src={video.src} poster={video.poster} />
           ) : image ? (
             <SafeImage
               src={image.src}
