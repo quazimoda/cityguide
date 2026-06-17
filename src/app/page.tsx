@@ -35,7 +35,7 @@ export default function Home() {
       <Hero
         title="Istanbul, planned with local rhythm"
         subtitle="Editorial city guides for ferries, neighborhoods, culture, student life, food walks, and realistic first visits — polished, practical, and never rushed."
-        image={istanbulImages.galataFerryDusk}
+        video={{ src: '/videos/istanbul-flight-hero.mp4', poster: '/images/istanbul-flight-hero-poster.jpg' }}
         ctas={[{ label: 'Start with guides', href: '/guides' }, { label: 'Search the city', href: '/search' }]}
       />
 
