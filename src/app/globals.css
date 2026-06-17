@@ -36,3 +36,26 @@ a {
   margin: 2rem 0 .75rem;
   color: #0f766e;
 }
+
+
+.hero-flight-video {
+  animation: hero-flight-scale 24s ease-in-out infinite alternate;
+  transform: scale(1.02);
+  transform-origin: center;
+}
+
+@keyframes hero-flight-scale {
+  from {
+    transform: scale(1.02);
+  }
+
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-flight-video {
+    animation: none;
+  }
+}

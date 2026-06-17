@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import { Container } from './Container';
+import { HeroVideoBackground } from './HeroVideoBackground';
 import { SafeImage } from './SafeImage';
 import type { ImageAsset } from '@/types/media';
 
@@ -9,28 +10,38 @@ type HeroCta = {
   href: string;
 };
 
+type HeroVideo = {
+  src: string;
+  poster: string;
+};
+
 type HeroProps = {
   title: string;
   subtitle: string;
   image?: ImageAsset;
+  video?: HeroVideo;
   ctas?: HeroCta[];
 };
 
-export function Hero({ title, subtitle, image, ctas }: HeroProps) {
-  if (image) {
+export function Hero({ title, subtitle, image, video, ctas }: HeroProps) {
+  if (video || image) {
     return (
       <section className="relative isolate overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 -z-10">
-          <SafeImage
-            src={image.src}
-            alt={image.alt}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/58 to-slate-950/22" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/20" />
+          {video ? (
+            <HeroVideoBackground src={video.src} poster={video.poster} />
+          ) : image ? (
+            <SafeImage
+              src={image.src}
+              alt={image.alt}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+          ) : null}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/94 via-slate-950/68 to-slate-950/34" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/86 via-slate-950/18 to-slate-950/34" />
         </div>
         <Container className="flex min-h-[540px] items-center py-20 md:min-h-[620px] md:py-24">
           <div className="max-w-4xl">
