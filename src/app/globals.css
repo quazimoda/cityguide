@@ -59,3 +59,44 @@ a {
     animation: none;
   }
 }
+
+.kitten-hunt-button {
+  animation: kitten-float 3.8s ease-in-out infinite;
+}
+
+.kitten-hunt-icon {
+  display: inline-block;
+  transform-origin: 50% 80%;
+  animation: kitten-wiggle 4.8s ease-in-out infinite;
+}
+
+@keyframes kitten-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes kitten-wiggle {
+  0%,
+  90%,
+  100% {
+    transform: rotate(0deg);
+  }
+  93% {
+    transform: rotate(-8deg);
+  }
+  96% {
+    transform: rotate(8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kitten-hunt-button,
+  .kitten-hunt-icon {
+    animation: none;
+  }
+}

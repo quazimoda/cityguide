@@ -6,6 +6,7 @@ import { TagList } from '@/components/TagList';
 import { AdPlaceholder } from '@/components/AdPlaceholder';
 import { ArticleHeroImage } from '@/components/ArticleHeroImage';
 import { ImageCredit } from '@/components/ImageCredit';
+import { KittenHunt } from '@/components/KittenHunt';
 import { SafeImage } from '@/components/SafeImage';
 import { blogPosts } from '@/data/blog';
 import { getExperienceOfferForContext } from '@/data/offers';
@@ -87,6 +88,7 @@ export default async function BlogPost({ params }: PageProps) {
         </div>
         <AdPlaceholder offer={offer} sourceArticleSlug={post.slug} sourceLabel={post.title} />
       </article>
+      <KittenHunt />
     </Container>
   );
 }
