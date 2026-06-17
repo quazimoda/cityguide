@@ -57,6 +57,8 @@ GOOGLE_FORM_ENTRY_DURATION=
 GOOGLE_FORM_ENTRY_SOURCE_PAGE_URL=
 GOOGLE_FORM_ENTRY_SOURCE_ARTICLE_SLUG=
 GOOGLE_FORM_ENTRY_SOURCE_LABEL=
+# Optional: only set this if the Google Form has a Kitten discount question/column.
+GOOGLE_FORM_ENTRY_DISCOUNT_PERCENT=
 # Optional: only set this if the Google Form has a Submitted at question/column.
 GOOGLE_FORM_ENTRY_SUBMITTED_AT=
 ```
@@ -68,16 +70,16 @@ Set `NEXT_PUBLIC_SITE_URL` in Vercel when a production domain is connected so me
 
 Excursion order requests are submitted by the existing client form to `/api/excursion-order`, then forwarded server-side to a Google Form `formResponse` endpoint. The browser must not submit directly to Google Forms.
 
-The public site form intentionally asks users for only four visible fields: name, phone, preferred time, and message. Offer, price, duration, source page URL, source article slug, and source label are collected from the contextual partner placement and submitted automatically to separate Google Form fields/Google Sheet columns; they are not appended to the message.
+The public site form intentionally asks users for only four visible fields: name, phone, preferred time, and message. Offer, price, duration, source page URL, source article slug, and source label are collected from the contextual partner placement and submitted automatically to separate Google Form fields/Google Sheet columns; they are not appended to the message. The hidden kitten discount is stored client-side with the existing safe localStorage fallback, and when configured it is submitted as its own Google Form field/Google Sheet column rather than being appended to the message.
 
 To configure the backend storage workflow:
 
-1. Create a Google Form with the required storage fields: name, phone, preferred time, message, offer name, price, duration, source page URL, source article slug, and source label. Add submitted at only if you want that optional column.
+1. Create a Google Form with the required storage fields: name, phone, preferred time, message, offer name, price, duration, source page URL, source article slug, and source label. Add a short-answer field such as “Kitten discount” only if you want the optional discount column, and add submitted at only if you want that optional column.
 2. Link the form responses to Google Sheets so each submitted request is recoverable from the linked sheet.
 3. Publish the form.
 4. Use the form `formResponse` URL as `GOOGLE_FORM_ACTION_URL`.
 5. Use a Google Forms pre-filled link or browser DevTools to get every `entry.xxxxx` field ID.
-6. Add the required `GOOGLE_FORM_*` environment variables from `.env.example` in Vercel Project Settings. Add `GOOGLE_FORM_ENTRY_SUBMITTED_AT` only when the Google Form actually has that question/column.
+6. Add the required `GOOGLE_FORM_*` environment variables from `.env.example` in Vercel Project Settings. If you add the optional kitten discount field, put its `entry.xxxxx` value in `GOOGLE_FORM_ENTRY_DISCOUNT_PERCENT`; this variable is optional and the order flow still works when it is not configured. Add `GOOGLE_FORM_ENTRY_SUBMITTED_AT` only when the Google Form actually has that question/column.
 7. Redeploy after adding or changing the environment variables.
 
 The current production Google Form environment values must be configured in Vercel and must not be committed to the repository. The excursion flow intentionally does not add payment, database, CMS, admin, auth, analytics, newsletter provider, Stripe, or checkout integration. Keep the homepage free of commercial CTAs; contextual offers should remain limited to compact partner/ad placement areas without duplicate article blocks, header CTAs, or search result CTAs.
