@@ -39,7 +39,7 @@ export default function Home() {
         ctas={[{ label: 'Start with guides', href: '/guides' }, { label: 'Search the city', href: '/search' }]}
       />
 
-      <section className="bg-sand py-14 md:py-20">
+      <section className="bg-orange-50 py-14 md:py-20">
         <Container>
           <SectionHeader eyebrow="Start here" title="Choose your Istanbul pace" description="Browse the city by destination, experience, or practical need — with compact routes that keep the homepage editorial rather than commercial." />
           <div className="grid gap-5 lg:grid-cols-2">

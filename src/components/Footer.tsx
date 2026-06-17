@@ -43,7 +43,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div className="relative mt-10 border-t border-white/10 pt-6 text-sm text-slate-400">© {new Date().getFullYear()} {siteConfig.name}. Social URLs are placeholders until official profiles are connected.</div>
+        <div className="relative mt-10 border-t border-white/10 pt-6 text-sm text-slate-400">© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</div>
       </Container>
     </footer>
   );
