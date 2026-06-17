@@ -4,6 +4,8 @@ export const KITTEN_DISCOUNT_PERCENT_KEY = 'istanbulKittenDiscountPercent';
 export const KITTEN_DISCOUNT_STEP_PERCENT = 5;
 export const KITTEN_DISCOUNT_MAX_PERCENT = 20;
 
+let memoryFoundCount = 0;
+
 export function calculateKittenDiscountPercent(foundCount: number) {
   if (!Number.isFinite(foundCount) || foundCount <= 0) {
     return 0;
@@ -15,34 +17,61 @@ export function calculateKittenDiscountPercent(foundCount: number) {
   );
 }
 
-function readStoredNumber(key: string) {
-  if (typeof window === 'undefined') {
-    return 0;
-  }
-
-  const storedValue = window.localStorage.getItem(key);
-  const parsedValue = Number.parseInt(storedValue ?? '0', 10);
-
-  return Number.isFinite(parsedValue) && parsedValue > 0 ? parsedValue : 0;
+function getSafeFoundCount(foundCount: number) {
+  return Number.isFinite(foundCount) && foundCount > 0 ? Math.floor(foundCount) : 0;
 }
 
-export function readKittenDiscountState() {
-  const foundCount = readStoredNumber(KITTEN_FOUND_COUNT_KEY);
+function getMemoryKittenDiscountState() {
+  const foundCount = getSafeFoundCount(memoryFoundCount);
   const discountPercent = calculateKittenDiscountPercent(foundCount);
 
   return { foundCount, discountPercent };
 }
 
-export function storeKittenDiscountState(foundCount: number) {
+function readStoredFoundCount() {
   if (typeof window === 'undefined') {
-    return { foundCount: 0, discountPercent: 0 };
+    return undefined;
   }
 
-  const safeFoundCount = Math.max(0, Math.floor(foundCount));
+  try {
+    const storedValue = window.localStorage.getItem(KITTEN_FOUND_COUNT_KEY);
+    const parsedValue = Number.parseInt(storedValue ?? '0', 10);
+
+    return getSafeFoundCount(parsedValue);
+  } catch {
+    return undefined;
+  }
+}
+
+export function readKittenDiscountState() {
+  const storedFoundCount = readStoredFoundCount();
+
+  if (storedFoundCount === undefined) {
+    return getMemoryKittenDiscountState();
+  }
+
+  memoryFoundCount = storedFoundCount;
+
+  return {
+    foundCount: storedFoundCount,
+    discountPercent: calculateKittenDiscountPercent(storedFoundCount),
+  };
+}
+
+export function storeKittenDiscountState(foundCount: number) {
+  const safeFoundCount = getSafeFoundCount(foundCount);
   const discountPercent = calculateKittenDiscountPercent(safeFoundCount);
 
-  window.localStorage.setItem(KITTEN_FOUND_COUNT_KEY, String(safeFoundCount));
-  window.localStorage.setItem(KITTEN_DISCOUNT_PERCENT_KEY, String(discountPercent));
+  memoryFoundCount = safeFoundCount;
+
+  if (typeof window !== 'undefined') {
+    try {
+      window.localStorage.setItem(KITTEN_FOUND_COUNT_KEY, String(safeFoundCount));
+      window.localStorage.setItem(KITTEN_DISCOUNT_PERCENT_KEY, String(discountPercent));
+    } catch {
+      // Keep the in-memory fallback updated so the current page session continues safely.
+    }
+  }
 
   return { foundCount: safeFoundCount, discountPercent };
 }
