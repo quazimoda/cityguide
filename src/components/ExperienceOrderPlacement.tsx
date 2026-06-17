@@ -3,6 +3,7 @@
 import type React from 'react';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { ExperienceOffer } from '@/data/offers';
+import { readKittenDiscountState } from '@/lib/kittenDiscount';
 
 type Props = {
   offer: ExperienceOffer;
@@ -37,6 +38,7 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
   const [form, setForm] = useState<FormState>(() => initialForm());
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [status, setStatus] = useState('');
+  const [discountPercent, setDiscountPercent] = useState(0);
   const headingId = useId();
 
   useEffect(() => {
@@ -68,6 +70,14 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
     setErrors((current) => ({ ...current, [key]: undefined }));
   }
 
+  function refreshDiscountPercent() {
+    const currentDiscountPercent = readKittenDiscountState().discountPercent;
+
+    setDiscountPercent(currentDiscountPercent);
+
+    return currentDiscountPercent;
+  }
+
   function validate() {
     const nextErrors: Partial<Record<keyof FormState, string>> = {};
     if (!form.name.trim()) nextErrors.name = 'Name is required.';
@@ -88,6 +98,7 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
     setStatus('');
 
     const currentPageUrl = typeof window !== 'undefined' ? window.location.href : sourcePageUrl;
+    const currentDiscountPercent = refreshDiscountPercent();
     let response: Response;
 
     try {
@@ -102,6 +113,7 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
           sourcePageUrl: currentPageUrl ?? '',
           sourceArticleSlug: sourceArticleSlug ?? '',
           sourceLabel: sourceLabel ?? '',
+          discountPercent: currentDiscountPercent,
         }),
       });
     } catch {
@@ -139,6 +151,7 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
       <button
         type="button"
         onClick={() => {
+          refreshDiscountPercent();
           setIsOpen(true);
           setStatus('');
         }}
@@ -162,6 +175,11 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
               <Field label="Phone / WhatsApp" error={errors.phone}><input value={form.phone} onChange={(e) => update('phone', e.target.value)} className="w-full rounded-xl border p-3" /></Field>
               <Field label="Preferred time" error={errors.preferredTime}><input value={form.preferredTime} onChange={(e) => update('preferredTime', e.target.value)} className="w-full rounded-xl border p-3" /></Field>
               <Field label="Message" error={errors.message} className="md:col-span-2"><textarea value={form.message} maxLength={2000} onChange={(e) => update('message', e.target.value)} className="min-h-24 w-full rounded-xl border p-3" /></Field>
+              {discountPercent > 0 ? (
+                <p className="md:col-span-2 -mt-1 text-xs font-semibold text-orange-700">
+                  Kitten discount applied: {discountPercent}%
+                </p>
+              ) : null}
               <div className="md:col-span-2 flex flex-wrap items-center gap-3">
                 <button disabled={isSubmitting || hasSubmitted} className="rounded-xl bg-teal-700 px-5 py-3 font-bold text-white disabled:cursor-not-allowed disabled:opacity-60">{isSubmitting ? 'Sending…' : 'Send request'}</button>
                 {status ? <p className="text-sm font-semibold text-teal-800">{status}</p> : null}

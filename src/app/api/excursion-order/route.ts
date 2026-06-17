@@ -14,7 +14,7 @@ const requiredEnvVars = [
   'GOOGLE_FORM_ENTRY_SOURCE_LABEL',
 ] as const;
 
-const optionalEnvVars = ['GOOGLE_FORM_ENTRY_SUBMITTED_AT'] as const;
+const optionalEnvVars = ['GOOGLE_FORM_ENTRY_SUBMITTED_AT', 'GOOGLE_FORM_ENTRY_DISCOUNT_PERCENT'] as const;
 
 type RequiredEnvVarName = (typeof requiredEnvVars)[number];
 type OptionalEnvVarName = (typeof optionalEnvVars)[number];
@@ -31,6 +31,7 @@ type OrderPayload = {
   sourceLabel?: unknown;
   phone?: unknown;
   preferredTime?: unknown;
+  discountPercent?: unknown;
 };
 
 type ValidatedOrder = {
@@ -44,10 +45,21 @@ type ValidatedOrder = {
   sourcePageUrl: string;
   sourceArticleSlug: string;
   sourceLabel: string;
+  discountPercent: number;
 };
 
 function asString(value: unknown) {
   return typeof value === 'string' ? value.trim() : '';
+}
+
+function normalizeDiscountPercent(value: unknown) {
+  const numericValue = typeof value === 'number' ? value : Number(asString(value));
+
+  if (!Number.isFinite(numericValue) || numericValue < 0 || numericValue > 20) {
+    return 0;
+  }
+
+  return Math.floor(numericValue);
 }
 
 function getGoogleFormConfig() {
@@ -97,6 +109,7 @@ function validatePayload(payload: OrderPayload): { data: ValidatedOrder } | { er
       sourcePageUrl: asString(payload.sourcePageUrl),
       sourceArticleSlug: asString(payload.sourceArticleSlug),
       sourceLabel: asString(payload.sourceLabel),
+      discountPercent: normalizeDiscountPercent(payload.discountPercent),
     },
   };
 }
@@ -114,6 +127,10 @@ function buildGoogleFormData(config: GoogleFormConfig, validated: ValidatedOrder
   formData.set(config.GOOGLE_FORM_ENTRY_SOURCE_PAGE_URL, validated.sourcePageUrl);
   formData.set(config.GOOGLE_FORM_ENTRY_SOURCE_ARTICLE_SLUG, validated.sourceArticleSlug);
   formData.set(config.GOOGLE_FORM_ENTRY_SOURCE_LABEL, validated.sourceLabel);
+
+  if (config.GOOGLE_FORM_ENTRY_DISCOUNT_PERCENT) {
+    formData.set(config.GOOGLE_FORM_ENTRY_DISCOUNT_PERCENT, String(validated.discountPercent));
+  }
 
   if (config.GOOGLE_FORM_ENTRY_SUBMITTED_AT) {
     formData.set(config.GOOGLE_FORM_ENTRY_SUBMITTED_AT, submittedAt);
