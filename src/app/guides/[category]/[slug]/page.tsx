@@ -5,6 +5,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { TagList } from '@/components/TagList';
 import { AdPlaceholder } from '@/components/AdPlaceholder';
 import { ArticleHeroImage } from '@/components/ArticleHeroImage';
+import { KittenHunt } from '@/components/KittenHunt';
 import { categories } from '@/data/categories';
 import { guides } from '@/data/guides';
 import { getExperienceOfferForContext } from '@/data/offers';
@@ -74,6 +75,7 @@ export default async function GuideDetail({ params }: PageProps) {
         </div>
         <AdPlaceholder offer={offer} sourceArticleSlug={guide.slug} sourceLabel={guide.title} />
       </article>
+      <KittenHunt />
     </Container>
   );
 }
