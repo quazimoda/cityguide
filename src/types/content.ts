@@ -3,12 +3,6 @@ export type ContentSection = {
   heading: string;
   body: string[];
   image?: ImageAsset;
-  video?: {
-    src: string;
-    poster: string;
-    title: string;
-    caption?: string;
-  };
 };
 export type Category = {
   title: string;
