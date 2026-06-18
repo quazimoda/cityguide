@@ -885,7 +885,15 @@ const blogData = [
       'Şehir Hatları official ferry timetables and route information for final schedule checks',
       'City Advisor Istanbul public transportation guide for durable ferry route logic',
     ],
-    heroImage: istanbulImages.ferryKadikoyDeck,
+    heroImage: {
+      src: '/images/advisor-ferry-shot-hero.webp',
+      alt: 'Woman posing on an Istanbul ferry deck above the foamy Bosphorus wake',
+      photographer: 'City Advisor Istanbul',
+      photographerUrl: '/',
+      source: 'City Advisor Istanbul',
+      sourceUrl: '/blog/how-to-capture-the-viral-istanbul-ferry-shot',
+      objectPosition: 'center 68%',
+    },
     sections: [
       {
         heading: 'The cinematic ferry shot hiding in plain sight',

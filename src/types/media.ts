@@ -1,4 +1,4 @@
-export type ImageSource = 'Unsplash';
+export type ImageSource = 'Unsplash' | 'City Advisor Istanbul';
 
 export type ImageAsset = {
   src: string;
@@ -7,4 +7,5 @@ export type ImageAsset = {
   photographerUrl: string;
   source: ImageSource;
   sourceUrl: string;
+  objectPosition?: string;
 };

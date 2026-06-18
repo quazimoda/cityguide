@@ -1,6 +1,17 @@
 import type { ImageAsset } from '@/types/media';
 
 export function ImageCredit({ image, className = '' }: { image: ImageAsset; className?: string }) {
+  if (image.source === 'City Advisor Istanbul') {
+    return (
+      <p className={`text-xs text-gray-500 ${className}`}>
+        Photo:{' '}
+        <a className="font-semibold underline-offset-2 hover:underline" href={image.sourceUrl}>
+          {image.source}
+        </a>
+      </p>
+    );
+  }
+
   return (
     <p className={`text-xs text-gray-500 ${className}`}>
       Photo by{' '}
