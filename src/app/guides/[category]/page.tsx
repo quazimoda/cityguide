@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Container } from '@/components/Container';
 import { Hero } from '@/components/Hero';
@@ -53,10 +54,27 @@ export default async function CategoryPage({ params }: PageProps) {
   return (
     <>
       <Hero title={guideCategory.title} subtitle={guideCategory.description} />
-      <Container className="grid gap-5 py-12 md:grid-cols-2">
-        {items.map((guide) => (
-          <GuideCard key={guide.slug} guide={guide} />
-        ))}
+      <Container className="py-12">
+        {items.length > 0 ? (
+          <div className="grid gap-5 md:grid-cols-2">
+            {items.map((guide) => (
+              <GuideCard key={guide.slug} guide={guide} />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-3xl bg-white p-8 text-center shadow-sm ring-1 ring-orange-100">
+            <h2 className="text-2xl font-black text-teal-950">Guides are coming soon</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-gray-600">
+              We do not have articles in this category yet, but the main guide library has plenty of practical Istanbul planning ideas.
+            </p>
+            <Link
+              href="/guides"
+              className="mt-6 inline-flex rounded-full bg-orange-500 px-5 py-3 text-sm font-black text-white transition hover:bg-orange-600 focus:outline-none focus:ring-4 focus:ring-orange-300"
+            >
+              Back to all guides
+            </Link>
+          </div>
+        )}
       </Container>
     </>
   );
