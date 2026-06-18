@@ -10,7 +10,7 @@ export function absoluteUrl(path = '/') {
 
 export function articleMetadata(article: Article, path: string): Metadata {
   const url = absoluteUrl(path);
-  const image = article.heroImage?.src;
+  const image = article.heroImage?.src ? absoluteUrl(article.heroImage.src) : undefined;
 
   return {
     title: article.title,
@@ -59,6 +59,7 @@ export function websiteJsonLd() {
 
 export function articleJsonLd(article: Article, path: string) {
   const url = absoluteUrl(path);
+  const image = article.heroImage?.src ? absoluteUrl(article.heroImage.src) : undefined;
 
   return {
     '@context': 'https://schema.org',
@@ -67,7 +68,7 @@ export function articleJsonLd(article: Article, path: string) {
     description: article.seoDescription,
     datePublished: article.publishedDate,
     dateModified: article.lastReviewedAt ?? article.publishedDate,
-    image: article.heroImage?.src ? [article.heroImage.src] : undefined,
+    image: image ? [image] : undefined,
     author: {
       '@type': 'Organization',
       name: publisherName,
