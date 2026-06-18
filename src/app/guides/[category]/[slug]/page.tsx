@@ -10,6 +10,7 @@ import { categories } from '@/data/categories';
 import { guides } from '@/data/guides';
 import { getExperienceOfferForContext } from '@/data/offers';
 import { getCategory, getGuide } from '@/lib/content';
+import { articleJsonLd, articleMetadata, breadcrumbJsonLd, JsonLd } from '@/lib/seo';
 
 type PageProps = {
   params: Promise<{ category: string; slug: string }>;
@@ -27,10 +28,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { category, slug } = await params;
   const guide = getGuide(category, slug);
 
-  return {
-    title: guide?.title,
-    description: guide?.seoDescription,
-  };
+  if (!guide) {
+    return { title: 'Guide not found' };
+  }
+
+  return articleMetadata(guide, `/guides/${category}/${guide.slug}`);
 }
 
 export default async function GuideDetail({ params }: PageProps) {
@@ -43,16 +45,17 @@ export default async function GuideDetail({ params }: PageProps) {
   }
 
   const offer = getExperienceOfferForContext(`${guide.slug} ${guide.category} ${guide.tags.join(' ')}`);
+  const breadcrumbItems = [
+    { label: 'Guides', href: '/guides' },
+    { label: guideCategory.title, href: `/guides/${guideCategory.slug}` },
+    { label: guide.title },
+  ];
 
   return (
     <Container className="py-8">
-      <Breadcrumbs
-        items={[
-          { label: 'Guides', href: '/guides' },
-          { label: guideCategory.title, href: `/guides/${guideCategory.slug}` },
-          { label: guide.title },
-        ]}
-      />
+      <JsonLd data={articleJsonLd(guide, `/guides/${guideCategory.slug}/${guide.slug}`)} />
+      <JsonLd data={breadcrumbJsonLd(breadcrumbItems)} />
+      <Breadcrumbs items={breadcrumbItems} />
       <article className="grid gap-8 lg:grid-cols-[1fr_300px]">
         <div>
           <p className="font-bold text-orange-600">

@@ -11,11 +11,24 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`
   },
-  description: siteConfig.slogan,
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  alternates: { canonical: '/' },
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.description,
+    url: '/',
+    siteName: siteConfig.name,
+    locale: 'en_US',
     type: 'website'
+  },
+  twitter: {
+    card: 'summary',
+    title: siteConfig.name,
+    description: siteConfig.description
+  },
+  icons: {
+    icon: '/icon.svg'
   }
 };
 

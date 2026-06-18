@@ -177,7 +177,7 @@ export function ExperienceOrderPlacement({ offer, sourceLabel, sourceArticleSlug
               <Field label="Message" error={errors.message} className="md:col-span-2"><textarea value={form.message} maxLength={2000} onChange={(e) => update('message', e.target.value)} className="min-h-24 w-full rounded-xl border p-3" /></Field>
               {discountPercent > 0 ? (
                 <p className="md:col-span-2 -mt-1 text-xs font-semibold text-orange-700">
-                  Kitten discount applied: {discountPercent}%
+                  Kitten discount applied: {discountPercent}% · active for 1 hour
                 </p>
               ) : null}
               <div className="md:col-span-2 flex flex-wrap items-center gap-3">

@@ -11,6 +11,28 @@ import { guides } from '@/data/guides';
 import { blogPosts } from '@/data/blog';
 import { recommendations } from '@/data/recommendations';
 import { istanbulImages } from '@/data/media';
+import { JsonLd, websiteJsonLd } from '@/lib/seo';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Istanbul Travel Guides, Local Tips, and City Planning',
+  description:
+    'Plan Istanbul with editorial guides for ferries, neighborhoods, food walks, student life, classic sights, and practical first visits.',
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'Istanbul Travel Guides, Local Tips, and City Planning',
+    description:
+      'Editorial Istanbul guides for realistic routes, neighborhoods, ferries, food, culture, and student-friendly city life.',
+    url: '/',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Istanbul Travel Guides, Local Tips, and City Planning',
+    description:
+      'Plan Istanbul with editorial local guides for sights, ferries, food, neighborhoods, and student life.',
+  },
+};
 
 const destinations = [
   { title: 'Historic Peninsula', description: 'Classic monuments, mosque etiquette, cisterns, parks, and slow old-city routes.', href: '/guides/best-places-to-visit/sultanahmet-classics', image: istanbulImages.suleymaniyeClassic, meta: 'Old city' },
@@ -32,6 +54,7 @@ export default function Home() {
 
   return (
     <>
+      <JsonLd data={websiteJsonLd()} />
       <Hero
         title="Istanbul, planned with local rhythm"
         subtitle="Editorial city guides for ferries, neighborhoods, culture, student life, food walks, and realistic first visits — polished, practical, and never rushed."
