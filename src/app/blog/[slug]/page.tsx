@@ -86,6 +86,26 @@ export default async function BlogPost({ params }: PageProps) {
                     </figcaption>
                   </figure>
                 ) : null}
+                {section.video ? (
+                  <figure className='not-prose my-7 overflow-hidden rounded-2xl bg-orange-50 shadow-sm ring-1 ring-orange-100'>
+                    <video
+                      className='max-h-[70vh] w-full bg-black object-contain sm:max-h-[560px]'
+                      controls
+                      playsInline
+                      poster={section.video.poster}
+                      preload='metadata'
+                      title={section.video.title}
+                    >
+                      <source src={section.video.src} type='video/mp4' />
+                      Your browser does not support the video tag.
+                    </video>
+                    {section.video.caption ? (
+                      <figcaption className='bg-white px-4 py-3 text-xs text-gray-500'>
+                        {section.video.caption}
+                      </figcaption>
+                    ) : null}
+                  </figure>
+                ) : null}
               </section>
             ))}
           </div>

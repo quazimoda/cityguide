@@ -885,7 +885,14 @@ const blogData = [
       'Şehir Hatları official ferry timetables and route information for final schedule checks',
       'City Advisor Istanbul public transportation guide for durable ferry route logic',
     ],
-    heroImage: istanbulImages.ferryKadikoyDeck,
+    heroImage: {
+      src: '/images/advisor-ferry-shot-hero.webp',
+      alt: 'Woman posing on an Istanbul ferry deck above the foamy Bosphorus wake',
+      photographer: 'City Advisor Istanbul',
+      photographerUrl: '/',
+      source: 'City Advisor Istanbul',
+      sourceUrl: '/blog/how-to-capture-the-viral-istanbul-ferry-shot',
+    },
     sections: [
       {
         heading: 'The cinematic ferry shot hiding in plain sight',
@@ -913,7 +920,13 @@ const blogData = [
           'Try to shoot on a sunny or lightly cloudy day. Mid-morning and late afternoon usually give the most flattering light: bright enough for sparkle on the water, but not as harsh as midday sun.',
           'For route planning, pair this with [the public transportation guide](/blog/how-to-use-public-transportation-in-istanbul) and [the first-time visitors guide](/blog/istanbul-for-first-time-visitors): they help you treat the ferry as part of your day, not a separate photo mission. Always check current ferry information before relying on a specific route or departure.',
         ],
-        image: istanbulImages.ferryGoldenHourDeck,
+        video: {
+          src: '/videos/ferry-shot-inline.mp4',
+          poster: '/images/ferry-shot-inline-poster.webp',
+          title: 'Istanbul ferry reel example',
+          caption:
+            'Short ferry-deck video example for framing movement, water, wind, and the Bosphorus wake.',
+        },
       },
       {
         heading: 'How to Take the Photo',
