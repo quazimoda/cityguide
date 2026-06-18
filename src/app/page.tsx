@@ -66,8 +66,8 @@ export default function Home() {
         <Container>
           <SectionHeader eyebrow="Start here" title="Choose your Istanbul pace" description="Browse the city by destination, experience, or practical need — with compact routes that keep the homepage editorial rather than commercial." />
           <div className="grid gap-5 lg:grid-cols-2">
-            <EditorialFeatureCard title="A first weekend that still leaves room for tea" description="Pair classic sights with ferry views and neighborhood pauses instead of packing every hour." href="/guides/weekend-routes/48-hours-first-time" image={istanbulImages.weekendSunset} eyebrow="Featured route" />
-            <EditorialFeatureCard title="Waterfront culture along the Bosphorus" description="Museums, palaces, shoreline walks, and ferries shaped into a calmer culture day." href="/guides/best-places-to-visit/bosphorus-museums-palaces" image={istanbulImages.karakoyFerrySunset} eyebrow="Culture day" />
+            <EditorialFeatureCard title="A first weekend that still leaves room for tea" description="Pair classic sights with ferry views and neighborhood pauses instead of packing every hour." href="/guides/weekend-routes/48-hours-first-time" image={istanbulImages.istanbulParkCanopy} eyebrow="Featured route" />
+            <EditorialFeatureCard title="Istanbul without emptying your wallet" description="Free views, ferry rides, parks, culture stops, and low-cost ways to enjoy the city." href="/blog/istanbul-without-emptying-your-wallet" image={istanbulImages.ferryTeaDeck} eyebrow="Budget Istanbul" />
           </div>
         </Container>
       </section>
