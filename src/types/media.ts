@@ -7,4 +7,5 @@ export type ImageAsset = {
   photographerUrl: string;
   source: ImageSource;
   sourceUrl: string;
+  objectPosition?: string;
 };

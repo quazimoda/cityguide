@@ -892,6 +892,7 @@ const blogData = [
       photographerUrl: '/',
       source: 'City Advisor Istanbul',
       sourceUrl: '/blog/how-to-capture-the-viral-istanbul-ferry-shot',
+      objectPosition: 'center 82%',
     },
     sections: [
       {

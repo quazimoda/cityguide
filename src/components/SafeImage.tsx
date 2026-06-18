@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import type { CSSProperties } from 'react';
 import { useState } from 'react';
 
 type SafeImageProps = {
@@ -10,9 +11,10 @@ type SafeImageProps = {
   sizes?: string;
   className?: string;
   priority?: boolean;
+  style?: CSSProperties;
 };
 
-export function SafeImage({ src, alt, fill = false, sizes, className = '', priority = false }: SafeImageProps) {
+export function SafeImage({ src, alt, fill = false, sizes, className = '', priority = false, style }: SafeImageProps) {
   const [hasError, setHasError] = useState(false);
 
   if (hasError) {
@@ -34,6 +36,7 @@ export function SafeImage({ src, alt, fill = false, sizes, className = '', prior
       sizes={sizes}
       className={className}
       priority={priority}
+      style={style}
       onError={() => setHasError(true)}
     />
   );
