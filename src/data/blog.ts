@@ -52,7 +52,7 @@ const blogData = [
     slug: 'how-to-use-public-transportation-in-istanbul',
     category: 'Transportation Tips',
     excerpt:
-      'A practical, current visitor guide to Istanbulkart, trams, metro, ferries, Marmaray, buses, and how to move around without relying on taxis.',
+      'A practical visitor guide to Istanbul public transportation: Istanbulkart habits, tram and metro logic, ferries, Marmaray, airport transfers, and taxi alternatives.',
     publishedDate: '2026-02-05',
     readingTime: '12 min read',
     tags: [
@@ -180,6 +180,15 @@ const blogData = [
           'Verification note: fares, card rules, timetables, and service patterns change. Check Metro Istanbul, Şehir Hatları, airport transport pages, and local route apps before you travel.',
         ],
       },
+      {
+        heading: 'FAQ: Istanbul public transportation',
+        body: [
+          'Do first-time visitors need taxis in Istanbul? Not for most central sightseeing. Use tram, metro, ferries, Marmaray, and walking first; keep taxis for late arrivals, heavy luggage, mobility needs, or routes where public transport is clearly awkward.',
+          'Is the ferry worth using if I am short on time? Yes, if it connects places you already want to visit. A crossing to Kadıköy or Üsküdar can be both transport and a Bosphorus experience, and it pairs naturally with [the ferry photo guide](/blog/how-to-capture-the-viral-istanbul-ferry-shot).',
+          'Where should I stay to make transport easier? Choose a base near a line you will actually use: tram for old-city sightseeing, metro or funicular for Beyoğlu, ferries or Marmaray for Asian-side plans. Compare neighborhoods in [Where to Stay in Istanbul](/blog/where-to-stay-in-istanbul-neighborhood-guide).',
+          'Should I trust exact fares from travel articles? Treat saved fares as fragile. Card rules, transfer rules, and special-route prices can change, so verify near your travel date and keep a small buffer.',
+        ],
+      },
     ],
   },
   {
@@ -253,7 +262,7 @@ const blogData = [
       {
         heading: 'Budget notes',
         body: [
-          'Avoid exact price assumptions. Transport fares, museum tickets, and café menus may change, so check current information and keep a flexible daily budget. Mixing free walks with one paid highlight usually works better than cutting everything. For a deeper budget plan, read the free and almost-free Istanbul article before choosing paid sights.',
+          'Avoid exact price assumptions. Transport fares, museum tickets, and café menus may change, so check current information and keep a flexible daily budget. Mixing free walks with one paid highlight usually works better than cutting everything. For a deeper budget plan, read [Istanbul Without Emptying Your Wallet](/blog/istanbul-without-emptying-your-wallet) before choosing paid sights.',
         ],
       },
       {
@@ -271,7 +280,7 @@ const blogData = [
     slug: 'istanbul-without-emptying-your-wallet',
     category: 'Budget',
     excerpt:
-      'A budget-wise Istanbul guide to free viewpoints, mosque courtyards, public ferries, parks, art spaces, and public cable cars that still feel rich.',
+      'A practical budget Istanbul guide to free viewpoints, mosque courtyards, public ferries, parks, art spaces, and low-cost days that still feel memorable.',
     publishedDate: '2026-06-16',
     readingTime: '13 min read',
     tags: [
@@ -400,6 +409,15 @@ const blogData = [
           'Or you can walk, look, listen, cross the water, climb the hill, enter the mosque respectfully, sit in the park, drink tea slowly — and leave with the feeling that the city gave you more than you paid for.',
         ],
       },
+      {
+        heading: 'FAQ: visiting Istanbul on a budget',
+        body: [
+          'Can Istanbul still be enjoyable on a modest budget? Yes, if you build days around neighborhoods, ferry crossings, mosque courtyards, parks, public galleries, and one carefully chosen paid highlight instead of stacking ticketed sights.',
+          'What is the easiest low-cost Bosphorus experience? Use a public ferry route that fits your day. Read [the public transportation guide](/blog/how-to-use-public-transportation-in-istanbul) before planning a late return, and use [the ferry photo guide](/blog/how-to-capture-the-viral-istanbul-ferry-shot) if photos are part of the plan.',
+          'Should I skip all paid attractions? No. Choose the interiors that genuinely matter to you, then balance them with free walks and viewpoints. A selective paid stop usually feels better than either overspending or refusing every museum.',
+          'Where should budget travelers stay? A slightly higher room price near useful transit can be better value than a cheap room that forces long daily transfers. Use [Where to Stay in Istanbul](/blog/where-to-stay-in-istanbul-neighborhood-guide) to compare the trade-offs.',
+        ],
+      },
     ],
   },
   {
@@ -407,7 +425,7 @@ const blogData = [
     slug: 'istanbul-for-first-time-visitors',
     category: 'Weekend Routes',
     excerpt:
-      'A practical first Istanbul plan: two realistic days across Sultanahmet, the Bosphorus, Galata, Karaköy, Beyoğlu, and an optional Asian-side crossing.',
+      'A realistic first-time Istanbul itinerary for two days, with old-city sights, ferry time, neighborhood choices, where-to-stay logic, and common mistakes to avoid.',
     publishedDate: '2026-05-05',
     readingTime: '13 min read',
     tags: [
@@ -434,7 +452,7 @@ const blogData = [
         heading: 'Quick answer: what to do if you have 2 days',
         body: [
           'If you have two days in Istanbul, spend day one on the Historic Peninsula and the Bosphorus: Sultanahmet in the morning, Basilica Cistern or a museum-style stop before or after lunch, Grand Bazaar or Eminönü in the afternoon, then a ferry ride or waterfront view in the evening.',
-          'Use day two for the modern-city side of the classic route: Galata, Karaköy, Beyoğlu, and either Kadıköy or Üsküdar if you want an Asian-side crossing. If attraction prices are shaping your choices, pair this route with the free and almost-free Istanbul budget article. This gives you monuments, hills, ferries, food streets, and skyline views without pretending you can see the whole city in one weekend.',
+          'Use day two for the modern-city side of the classic route: Galata, Karaköy, Beyoğlu, and either Kadıköy or Üsküdar if you want an Asian-side crossing. If attraction prices are shaping your choices, pair this route with [Istanbul Without Emptying Your Wallet](/blog/istanbul-without-emptying-your-wallet). This gives you monuments, hills, ferries, food streets, and skyline views without pretending you can see the whole city in one weekend.',
         ],
       },
       {
@@ -525,8 +543,17 @@ const blogData = [
       {
         heading: 'Related guides',
         body: [
-          'Read the public transportation guide before choosing where to stay, then use the neighborhood guide to decide whether Sultanahmet, Karaköy, Galata, Beyoğlu, Kadıköy, or Beşiktaş fits your trip style.',
-          'If you have a third day, add a slower Bosphorus, Kadıköy, Üsküdar, palace, or museum day rather than squeezing it into this two-day starter route.',
+          'Before booking accommodation, compare this route with [Where to Stay in Istanbul](/blog/where-to-stay-in-istanbul-neighborhood-guide). For daily movement, read [How to Use Public Transportation in Istanbul](/blog/how-to-use-public-transportation-in-istanbul).',
+          'If you want a lower-cost version of the same first trip, use [Istanbul Without Emptying Your Wallet](/blog/istanbul-without-emptying-your-wallet). If photos matter, add one crossing from [the ferry shot guide](/blog/how-to-capture-the-viral-istanbul-ferry-shot) instead of forcing a separate detour.',
+        ],
+      },
+      {
+        heading: 'FAQ: first-time Istanbul planning',
+        body: [
+          'Is two days enough for Istanbul? Two days is enough for a strong first impression, not for completion. Focus on Sultanahmet, one Bosphorus or ferry moment, Galata/Karaköy, and one food neighborhood rather than chasing every landmark.',
+          'Where should first-time visitors stay? Sultanahmet, Sirkeci, Karaköy, and Galata are efficient for short sightseeing trips. Before booking, compare the neighborhood trade-offs in [Where to Stay in Istanbul](/blog/where-to-stay-in-istanbul-neighborhood-guide).',
+          'Should I visit the Asian side on a first trip? Yes if you have enough energy and want neighborhood food, ferry views, or a less monument-focused afternoon. Skip it if queues, weather, or tired feet have already slowed your old-city day.',
+          'How do I keep the trip affordable? Use public transport, group sights by area, choose paid interiors selectively, and read [Istanbul Without Emptying Your Wallet](/blog/istanbul-without-emptying-your-wallet) before building a ticket-heavy checklist.',
         ],
       },
     ],
@@ -658,7 +685,7 @@ const blogData = [
     ],
   },
   {
-    title: 'Where to Stay in Istanbul: Neighborhood Decision Guide',
+    title: 'Where to Stay in Istanbul: Best Areas by Traveler Type',
     slug: 'where-to-stay-in-istanbul-neighborhood-guide',
     category: 'Best Places to Visit',
     excerpt:
@@ -772,8 +799,18 @@ const blogData = [
       {
         heading: 'Related guides',
         body: [
-          'Read the first-time visitors guide if your stay is built around a two-day starter route. Read the public transportation guide before booking if you are comparing similar apartments or hotels in different neighborhoods.',
+          'Read [the first-time visitors guide](/blog/istanbul-for-first-time-visitors) if your stay is built around a two-day starter route. Read [the public transportation guide](/blog/how-to-use-public-transportation-in-istanbul) before booking if you are comparing similar apartments or hotels in different neighborhoods.',
+          'For café-heavy or remote-work stays, compare this guide with [cozy cafés for slow mornings](/guides/cafes-and-restaurants/cozy-cafes-slow-mornings) and [Kadıköy local eats](/guides/cafes-and-restaurants/kadikoy-local-eats).',
           'When in doubt, open a map and test three real trips from the exact address: your first morning sight, your likely dinner area, and your airport or final departure route. That tells you more than a neighborhood label.',
+        ],
+      },
+      {
+        heading: 'FAQ: where to stay in Istanbul',
+        body: [
+          'What is the best area for a first visit? For a short first visit, Sultanahmet, Sirkeci, Karaköy, and Galata usually reduce friction. The best exact choice depends on whether you prioritize morning monuments, evening restaurants, ferry access, or quiet sleep.',
+          'Is Kadıköy too far for sightseeing? Not if you enjoy ferry or Marmaray crossings and want a lived-in food-and-café base. It is less ideal if your entire trip is early old-city sightseeing.',
+          'Should I choose the cheapest hotel I can find? Not automatically. A cheaper room can cost more in time if it depends on buses, hills, or taxis. Test real routes before booking.',
+          'Which areas are best for remote workers? Kadıköy, Moda, Cihangir, Galata, and Nişantaşı can work well, but apartment quality, desk setup, noise, and internet reviews matter more than the neighborhood name.',
         ],
       },
     ],
@@ -827,7 +864,7 @@ const blogData = [
     slug: 'how-to-capture-the-viral-istanbul-ferry-shot',
     category: 'Photography Tips',
     excerpt:
-      'A practical, cinematic guide to shooting Istanbul’s favorite ferry-deck photo and short Bosphorus reels without a private boat or complicated setup.',
+      'How to shoot the Istanbul ferry-deck photo and short Bosphorus reels with regular public ferries, simple phone settings, safe positioning, and route-planning cautions.',
     publishedDate: '2026-06-16',
     readingTime: '8 min read',
     tags: [
@@ -874,7 +911,7 @@ const blogData = [
           'The best place is the stern — the back of the ferry — where the wake is strongest and most visible.',
           'Some of the most scenic ferry routes for this kind of photo include Üsküdar–Beşiktaş, Üsküdar–Eminönü, Kadıköy–Karaköy, and Bosphorus Line ferries departing from Eminönü.',
           'Try to shoot on a sunny or lightly cloudy day. Mid-morning and late afternoon usually give the most flattering light: bright enough for sparkle on the water, but not as harsh as midday sun.',
-          'For route planning, pair this with the public transportation guide and the first-time visitors guide: they help you treat the ferry as part of your day, not a separate photo mission. Always check current ferry information before relying on a specific route or departure.',
+          'For route planning, pair this with [the public transportation guide](/blog/how-to-use-public-transportation-in-istanbul) and [the first-time visitors guide](/blog/istanbul-for-first-time-visitors): they help you treat the ferry as part of your day, not a separate photo mission. Always check current ferry information before relying on a specific route or departure.',
         ],
         image: istanbulImages.ferryGoldenHourDeck,
       },
@@ -912,7 +949,7 @@ const blogData = [
           '“POV: Crossing from Europe to Asia” can start with the ferry leaving the pier. Add a glass of Turkish tea, seagulls overhead, the Bosphorus opening ahead, and the skyline fading behind you.',
           '“The Most Beautiful Public Transport in the World” works well if you film the route from the ferry terminal to the open deck, then end with the wake behind the boat and the city stretching across the horizon.',
           '“A Side of Istanbul Most Tourists Miss” can begin in a busy street or crowded ferry terminal, then cut to the open deck: wind, water, silence, and the soft rhythm of the boat.',
-          'This contrast is very Istanbul — noisy one minute, strangely peaceful the next. It also connects naturally with affordable Istanbul planning, because the ferry is both transport and one of the city’s best low-cost experiences.',
+          'This contrast is very Istanbul — noisy one minute, strangely peaceful the next. It also connects naturally with [affordable Istanbul planning](/blog/istanbul-without-emptying-your-wallet), because the ferry is both transport and one of the city’s best low-cost experiences.',
         ],
         image: istanbulImages.ferryTeaDeck,
       },
@@ -924,14 +961,22 @@ const blogData = [
         ],
       },
       {
-        heading: 'Final Thoughts',
+        heading: 'Final thoughts',
         body: [
           'You do not need a luxury yacht or professional camera to create unforgettable Istanbul content. A regular city ferry, good light, and the right angle are enough.',
           'That is the beauty of this shot: it feels cinematic, but it is completely ordinary. It is public transport turned into a movie scene.',
-          'And in Istanbul, that happens more often than you expect.',
-          'Istanbul City Advisor Tip: arrive 10–15 minutes before departure if you want a good spot at the back of the ferry. The first few minutes after leaving the pier are often the best for photos and reels: the wake is strong, the light is fresh, and most passengers are still finding their seats.',
+          'Istanbul City Advisor Tip: arrive a little before departure if you want a good spot at the back of the ferry. The first few minutes after leaving the pier are often strong for photos and reels: the wake is visible, the light may still be clean, and passengers are settling into the ride.',
         ],
         image: istanbulImages.galataFerryDusk,
+      },
+      {
+        heading: 'FAQ: Istanbul ferry photos and reels',
+        body: [
+          'Do I need a private boat for the ferry shot? No. The point of the shot is that an ordinary public ferry can look cinematic when you use the stern, wake, light, and movement well.',
+          'Which ferry route should I choose? Choose a route that already fits your day, then verify the current timetable. [The public transportation guide](/blog/how-to-use-public-transportation-in-istanbul) explains ferry logic without relying on fragile schedules.',
+          'Is the shot safe to take? It can be, if you stay inside passenger areas, keep your grip on your phone, avoid blocking movement, and never climb railings or lean out for a better angle.',
+          'Can I combine this with a first Istanbul itinerary? Yes. Add one ferry crossing to [the first-time visitors route](/blog/istanbul-for-first-time-visitors) instead of making a separate photo-only trip across the city.',
+        ],
       },
     ],
   },

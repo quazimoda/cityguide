@@ -5,6 +5,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { TagList } from '@/components/TagList';
 import { AdPlaceholder } from '@/components/AdPlaceholder';
 import { ArticleHeroImage } from '@/components/ArticleHeroImage';
+import { ArticleParagraph } from '@/components/ArticleParagraph';
 import { ImageCredit } from '@/components/ImageCredit';
 import { KittenHunt } from '@/components/KittenHunt';
 import { SafeImage } from '@/components/SafeImage';
@@ -67,7 +68,7 @@ export default async function BlogPost({ params }: PageProps) {
               <section key={section.heading}>
                 <h2>{section.heading}</h2>
                 {section.body.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
+                  <ArticleParagraph key={paragraph} text={paragraph} />
                 ))}
                 {section.image ? (
                   <figure className='not-prose my-7 overflow-hidden rounded-2xl bg-orange-50 shadow-sm ring-1 ring-orange-100'>
