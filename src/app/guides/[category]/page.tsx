@@ -18,9 +18,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { category } = await params;
   const guideCategory = getCategory(category);
 
+  if (!guideCategory) {
+    return { title: 'Guides' };
+  }
+
   return {
-    title: guideCategory?.title ?? 'Guides',
-    description: guideCategory?.description,
+    title: guideCategory.title,
+    description: guideCategory.description,
+    alternates: { canonical: `/guides/${guideCategory.slug}` },
+    openGraph: {
+      title: `${guideCategory.title} Guides`,
+      description: guideCategory.description,
+      url: `/guides/${guideCategory.slug}`,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary',
+      title: `${guideCategory.title} Guides`,
+      description: guideCategory.description,
+    },
   };
 }
 

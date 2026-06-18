@@ -70,7 +70,8 @@ export function KittenHunt() {
     <>
       {discountPercent > 0 ? (
         <div className="fixed bottom-4 right-4 z-40 rounded-full bg-teal-950/90 px-3 py-2 text-xs font-bold text-white shadow-lg ring-1 ring-white/30 md:bottom-5 md:right-5">
-          Kitten discount: {discountPercent}%
+          <span className="block">Kitten discount: {discountPercent}%</span>
+          <span className="block text-[0.65rem] font-semibold text-orange-100">Active for 1 hour</span>
         </div>
       ) : null}
 

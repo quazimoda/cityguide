@@ -11,6 +11,7 @@ import { SafeImage } from '@/components/SafeImage';
 import { blogPosts } from '@/data/blog';
 import { getExperienceOfferForContext } from '@/data/offers';
 import { getBlogPost } from '@/lib/content';
+import { articleJsonLd, articleMetadata, breadcrumbJsonLd, JsonLd } from '@/lib/seo';
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -27,10 +28,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getBlogPost(slug);
 
-  return {
-    title: post?.title,
-    description: post?.seoDescription,
-  };
+  if (!post) {
+    return { title: 'Blog post not found' };
+  }
+
+  return articleMetadata(post, `/blog/${post.slug}`);
 }
 
 export default async function BlogPost({ params }: PageProps) {
@@ -42,12 +44,13 @@ export default async function BlogPost({ params }: PageProps) {
   }
 
   const offer = getExperienceOfferForContext(`${post.slug} ${post.category} ${post.tags.join(' ')}`);
+  const breadcrumbItems = [{ label: 'Blog', href: '/blog' }, { label: post.title }];
 
   return (
     <Container className='py-8'>
-      <Breadcrumbs
-        items={[{ label: 'Blog', href: '/blog' }, { label: post.title }]}
-      />
+      <JsonLd data={articleJsonLd(post, `/blog/${post.slug}`)} />
+      <JsonLd data={breadcrumbJsonLd(breadcrumbItems)} />
+      <Breadcrumbs items={breadcrumbItems} />
       <article className='grid gap-8 lg:grid-cols-[1fr_300px]'>
         <div>
           <p className='font-bold text-orange-600'>
