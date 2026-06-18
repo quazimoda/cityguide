@@ -5,6 +5,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { TagList } from '@/components/TagList';
 import { AdPlaceholder } from '@/components/AdPlaceholder';
 import { ArticleHeroImage } from '@/components/ArticleHeroImage';
+import { ArticleParagraph } from '@/components/ArticleParagraph';
 import { KittenHunt } from '@/components/KittenHunt';
 import { categories } from '@/data/categories';
 import { guides } from '@/data/guides';
@@ -70,7 +71,7 @@ export default async function GuideDetail({ params }: PageProps) {
               <section key={section.heading}>
                 <h2>{section.heading}</h2>
                 {section.body.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
+                  <ArticleParagraph key={paragraph} text={paragraph} />
                 ))}
               </section>
             ))}
