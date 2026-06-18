@@ -60,43 +60,146 @@ a {
   }
 }
 
+
 .kitten-hunt-button {
-  animation: kitten-float 3.8s ease-in-out infinite;
+  position: fixed;
+  z-index: 30;
+  display: block;
+  width: clamp(9.5rem, 28vw, 20rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  filter: drop-shadow(0 18px 22px rgb(15 23 42 / 0.22));
+  transform: var(--kitten-peek-transform);
+  animation:
+    kitten-peek-slide 720ms cubic-bezier(0.18, 0.89, 0.32, 1.18) both,
+    kitten-peek-float 4.8s ease-in-out 720ms infinite;
+  will-change: transform;
 }
 
-.kitten-hunt-icon {
-  display: inline-block;
-  transform-origin: 50% 80%;
-  animation: kitten-wiggle 4.8s ease-in-out infinite;
+.kitten-hunt-button:focus-visible {
+  outline: 4px solid rgb(253 186 116 / 0.95);
+  outline-offset: 0.35rem;
+  border-radius: 9999px;
 }
 
-@keyframes kitten-float {
+.kitten-hunt-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+  transform-origin: 50% 85%;
+  animation: kitten-peek-wiggle 5.8s ease-in-out 1.2s infinite;
+}
+
+.kitten-hunt-button--bottom-left {
+  bottom: -2.25rem;
+  left: -2.5rem;
+  --kitten-hidden-transform: translate(-18%, 68%) rotate(8deg);
+  --kitten-peek-transform: translate(0, 0) rotate(-4deg);
+}
+
+.kitten-hunt-button--bottom-right {
+  right: -2.5rem;
+  bottom: -2.25rem;
+  --kitten-hidden-transform: translate(18%, 68%) rotate(-8deg);
+  --kitten-peek-transform: translate(0, 0) rotate(4deg);
+}
+
+.kitten-hunt-button--bottom-center {
+  bottom: -2.75rem;
+  left: 50%;
+  --kitten-hidden-transform: translate(-50%, 72%);
+  --kitten-peek-transform: translate(-50%, 0);
+}
+
+.kitten-hunt-button--left-side {
+  top: min(62vh, 34rem);
+  left: -5.75rem;
+  --kitten-hidden-transform: translate(-68%, -50%) rotate(14deg);
+  --kitten-peek-transform: translate(0, -50%) rotate(8deg);
+}
+
+.kitten-hunt-button--right-side {
+  top: min(62vh, 34rem);
+  right: -5.75rem;
+  --kitten-hidden-transform: translate(68%, -50%) rotate(-14deg);
+  --kitten-peek-transform: translate(0, -50%) rotate(-8deg);
+}
+
+.kitten-hunt-button--top-left {
+  top: 5.5rem;
+  left: -3.25rem;
+  --kitten-hidden-transform: translate(-35%, -78%) rotate(168deg);
+  --kitten-peek-transform: translate(0, 0) rotate(168deg);
+}
+
+.kitten-hunt-button--top-right {
+  top: 5.5rem;
+  right: -3.25rem;
+  --kitten-hidden-transform: translate(35%, -78%) rotate(-168deg);
+  --kitten-peek-transform: translate(0, 0) rotate(-168deg);
+}
+
+@keyframes kitten-peek-slide {
+  from {
+    transform: var(--kitten-hidden-transform);
+  }
+  to {
+    transform: var(--kitten-peek-transform);
+  }
+}
+
+@keyframes kitten-peek-float {
   0%,
   100% {
-    transform: translateY(0);
+    transform: var(--kitten-peek-transform) translateY(0);
   }
   50% {
-    transform: translateY(-5px);
+    transform: var(--kitten-peek-transform) translateY(-0.4rem);
   }
 }
 
-@keyframes kitten-wiggle {
+@keyframes kitten-peek-wiggle {
   0%,
-  90%,
+  88%,
   100% {
     transform: rotate(0deg);
   }
-  93% {
-    transform: rotate(-8deg);
+  91% {
+    transform: rotate(-2.5deg);
   }
-  96% {
-    transform: rotate(8deg);
+  94% {
+    transform: rotate(2.5deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .kitten-hunt-button {
+    width: clamp(9.25rem, 44vw, 13.75rem);
+  }
+
+  .kitten-hunt-button--left-side {
+    top: 58vh;
+    left: -4.5rem;
+  }
+
+  .kitten-hunt-button--right-side {
+    top: 58vh;
+    right: -4.5rem;
+  }
+
+  .kitten-hunt-button--top-left,
+  .kitten-hunt-button--top-right {
+    top: 5rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .kitten-hunt-button,
-  .kitten-hunt-icon {
+  .kitten-hunt-image {
     animation: none;
   }
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import {
   readKittenDiscountState,
@@ -7,17 +8,17 @@ import {
 } from '@/lib/kittenDiscount';
 
 type KittenSpot = {
-  bottom?: string;
-  left?: string;
-  right?: string;
-  top?: string;
+  className: string;
 };
 
 const KITTEN_SPOTS: KittenSpot[] = [
-  { top: '18%', right: '1rem' },
-  { top: '38%', left: '0.75rem' },
-  { bottom: '7rem', right: '1.25rem' },
-  { bottom: '5.5rem', left: '1rem' },
+  { className: 'kitten-hunt-button--bottom-left' },
+  { className: 'kitten-hunt-button--bottom-right' },
+  { className: 'kitten-hunt-button--bottom-center' },
+  { className: 'kitten-hunt-button--left-side' },
+  { className: 'kitten-hunt-button--right-side' },
+  { className: 'kitten-hunt-button--top-left' },
+  { className: 'kitten-hunt-button--top-right' },
 ];
 
 function getRandomInteger(minimum: number, maximum: number) {
@@ -35,7 +36,7 @@ export function KittenHunt() {
   useEffect(() => {
     setDiscountPercent(readKittenDiscountState().discountPercent);
 
-    const delay = getRandomInteger(3000, 6000);
+    const delay = getRandomInteger(3000, 8000);
     const timer = window.setTimeout(() => {
       setIsVisible(true);
     }, delay);
@@ -87,14 +88,19 @@ export function KittenHunt() {
       {isVisible && !hasBeenFoundOnPage ? (
         <button
           aria-label="Find the Istanbul kitten"
-          className="kitten-hunt-button fixed z-30 grid h-12 w-12 place-items-center rounded-full bg-orange-50/95 text-2xl shadow-lg ring-1 ring-orange-200 transition hover:-translate-y-0.5 hover:scale-105 hover:bg-orange-100 focus:outline-none focus:ring-4 focus:ring-orange-300"
+          className={`kitten-hunt-button ${kittenSpot.className}`}
           onClick={handleFindKitten}
-          style={kittenSpot}
           type="button"
         >
-          <span aria-hidden="true" className="kitten-hunt-icon">
-            🐈
-          </span>
+          <Image
+            alt=""
+            aria-hidden="true"
+            className="kitten-hunt-image"
+            height={320}
+            priority={false}
+            src="/images/kitten-peek.webp"
+            width={320}
+          />
         </button>
       ) : null}
     </>
