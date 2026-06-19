@@ -17,6 +17,7 @@ const socialLinks = [
   { key: 'x', label: 'X', href: siteConfig.social.x },
   { key: 'youtube', label: 'YouTube', href: siteConfig.social.youtube },
   { key: 'tiktok', label: 'TikTok', href: siteConfig.social.tiktok },
+  { key: 'linkedin', label: 'LinkedIn', href: siteConfig.social.linkedin },
 ] as const;
 
 export function Footer() {
@@ -36,7 +37,7 @@ export function Footer() {
             <p className="text-sm font-black uppercase tracking-[0.2em] text-orange-200">Follow</p>
             <div className="mt-4 flex gap-3">
               {socialLinks.map((link) => (
-                <Link key={link.key} href={link.href} aria-label={link.label} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-300">
+                <Link key={link.key} href={link.href} aria-label={link.label} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-300">
                   <SocialIcon name={link.key} />
                 </Link>
               ))}
