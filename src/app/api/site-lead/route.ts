@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 const requiredEnvVars = [
   'GOOGLE_FORM_ACTION_URL',
   'GOOGLE_FORM_ENTRY_NAME',
+  'GOOGLE_FORM_ENTRY_EMAIL',
   'GOOGLE_FORM_ENTRY_PHONE',
   'GOOGLE_FORM_ENTRY_PREFERRED_TIME',
   'GOOGLE_FORM_ENTRY_MESSAGE',
@@ -23,47 +24,31 @@ const optionalEnvVars = [
 type RequiredEnvVarName = (typeof requiredEnvVars)[number];
 type OptionalEnvVarName = (typeof optionalEnvVars)[number];
 type GoogleFormConfig = Record<RequiredEnvVarName, string> & Partial<Record<OptionalEnvVarName, string>>;
+type SiteLeadType = 'contact' | 'subscribe';
 
-type OrderPayload = {
+type SiteLeadPayload = {
+  type?: unknown;
   name?: unknown;
+  email?: unknown;
   message?: unknown;
-  offerName?: unknown;
-  price?: unknown;
-  duration?: unknown;
   sourcePageUrl?: unknown;
-  sourceArticleSlug?: unknown;
-  sourceLabel?: unknown;
-  phone?: unknown;
-  preferredTime?: unknown;
-  discountPercent?: unknown;
 };
 
-type ValidatedOrder = {
+type ValidatedSiteLead = {
+  type: SiteLeadType;
   name: string;
-  phone: string;
-  preferredTime: string;
+  email: string;
   message: string;
   offerName: string;
-  price: string;
-  duration: string;
   sourcePageUrl: string;
   sourceArticleSlug: string;
   sourceLabel: string;
-  discountPercent: number;
 };
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function asString(value: unknown) {
   return typeof value === 'string' ? value.trim() : '';
-}
-
-function normalizeDiscountPercent(value: unknown) {
-  const numericValue = typeof value === 'number' ? value : Number(asString(value));
-
-  if (!Number.isFinite(numericValue) || numericValue < 0 || numericValue > 20) {
-    return 0;
-  }
-
-  return Math.floor(numericValue);
 }
 
 function getGoogleFormConfig() {
@@ -80,20 +65,33 @@ function getGoogleFormConfig() {
   }
 
   if (missing.length > 0) {
-    console.error('Excursion order backend is missing Google Form environment variables:', missing.join(', '));
+    console.error('Site lead backend is missing Google Form environment variables:', missing.join(', '));
     return null;
   }
 
   return config;
 }
 
-function validatePayload(payload: OrderPayload): { data: ValidatedOrder } | { error: string } {
+function validatePayload(payload: SiteLeadPayload): { data: ValidatedSiteLead } | { error: string } {
+  const type = asString(payload.type);
   const name = asString(payload.name);
-  const phone = asString(payload.phone);
-  const preferredTime = asString(payload.preferredTime);
+  const email = asString(payload.email).toLowerCase();
   const message = asString(payload.message);
+  const sourcePageUrl = asString(payload.sourcePageUrl);
 
-  if (!name || !phone || !preferredTime || !message) {
+  if (type !== 'contact' && type !== 'subscribe') {
+    return { error: 'Submission type must be contact or subscribe.' };
+  }
+
+  if (!email) {
+    return { error: 'Email is required.' };
+  }
+
+  if (!emailPattern.test(email)) {
+    return { error: 'Please enter a valid email address.' };
+  }
+
+  if (type === 'contact' && (!name || !message)) {
     return { error: 'Please complete all required fields.' };
   }
 
@@ -101,43 +99,56 @@ function validatePayload(payload: OrderPayload): { data: ValidatedOrder } | { er
     return { error: 'Message must be 2000 characters or fewer.' };
   }
 
+  if (type === 'subscribe') {
+    return {
+      data: {
+        type,
+        name: 'Newsletter subscriber',
+        email,
+        message: 'Newsletter subscription request',
+        offerName: 'Newsletter subscription',
+        sourcePageUrl,
+        sourceArticleSlug: 'subscribe',
+        sourceLabel: 'Subscribe form',
+      },
+    };
+  }
+
   return {
     data: {
+      type,
       name,
-      phone,
-      preferredTime,
+      email,
       message,
-      offerName: asString(payload.offerName),
-      price: asString(payload.price),
-      duration: asString(payload.duration),
-      sourcePageUrl: asString(payload.sourcePageUrl),
-      sourceArticleSlug: asString(payload.sourceArticleSlug),
-      sourceLabel: asString(payload.sourceLabel),
-      discountPercent: normalizeDiscountPercent(payload.discountPercent),
+      offerName: 'Contact message',
+      sourcePageUrl,
+      sourceArticleSlug: 'contact',
+      sourceLabel: 'Contact page',
     },
   };
 }
 
-function buildGoogleFormData(config: GoogleFormConfig, validated: ValidatedOrder, submittedAt: string) {
+function buildGoogleFormData(config: GoogleFormConfig, validated: ValidatedSiteLead, submittedAt: string) {
   const formData = new URLSearchParams();
 
   if (config.GOOGLE_FORM_ENTRY_SUBMISSION_TYPE) {
-    formData.set(config.GOOGLE_FORM_ENTRY_SUBMISSION_TYPE, 'excursion_order');
+    formData.set(config.GOOGLE_FORM_ENTRY_SUBMISSION_TYPE, validated.type);
   }
 
   formData.set(config.GOOGLE_FORM_ENTRY_NAME, validated.name);
-  formData.set(config.GOOGLE_FORM_ENTRY_PHONE, validated.phone);
-  formData.set(config.GOOGLE_FORM_ENTRY_PREFERRED_TIME, validated.preferredTime);
+  formData.set(config.GOOGLE_FORM_ENTRY_EMAIL, validated.email);
+  formData.set(config.GOOGLE_FORM_ENTRY_PHONE, 'not provided');
+  formData.set(config.GOOGLE_FORM_ENTRY_PREFERRED_TIME, 'not applicable');
   formData.set(config.GOOGLE_FORM_ENTRY_MESSAGE, validated.message);
   formData.set(config.GOOGLE_FORM_ENTRY_OFFER_NAME, validated.offerName);
-  formData.set(config.GOOGLE_FORM_ENTRY_PRICE, validated.price);
-  formData.set(config.GOOGLE_FORM_ENTRY_DURATION, validated.duration);
+  formData.set(config.GOOGLE_FORM_ENTRY_PRICE, '');
+  formData.set(config.GOOGLE_FORM_ENTRY_DURATION, '');
   formData.set(config.GOOGLE_FORM_ENTRY_SOURCE_PAGE_URL, validated.sourcePageUrl);
   formData.set(config.GOOGLE_FORM_ENTRY_SOURCE_ARTICLE_SLUG, validated.sourceArticleSlug);
   formData.set(config.GOOGLE_FORM_ENTRY_SOURCE_LABEL, validated.sourceLabel);
 
   if (config.GOOGLE_FORM_ENTRY_DISCOUNT_PERCENT) {
-    formData.set(config.GOOGLE_FORM_ENTRY_DISCOUNT_PERCENT, String(validated.discountPercent));
+    formData.set(config.GOOGLE_FORM_ENTRY_DISCOUNT_PERCENT, '');
   }
 
   if (config.GOOGLE_FORM_ENTRY_SUBMITTED_AT) {
@@ -150,13 +161,13 @@ function buildGoogleFormData(config: GoogleFormConfig, validated: ValidatedOrder
 export async function POST(request: Request) {
   const config = getGoogleFormConfig();
   if (!config) {
-    return NextResponse.json({ ok: false, error: 'Order request backend is not configured.' }, { status: 500 });
+    return NextResponse.json({ ok: false, error: 'Lead request backend is not configured.' }, { status: 500 });
   }
 
-  let payload: OrderPayload;
+  let payload: SiteLeadPayload;
 
   try {
-    payload = (await request.json()) as OrderPayload;
+    payload = (await request.json()) as SiteLeadPayload;
   } catch {
     return NextResponse.json({ ok: false, error: 'Invalid JSON payload.' }, { status: 400 });
   }
@@ -179,12 +190,12 @@ export async function POST(request: Request) {
     });
 
     if (response.status < 200 || response.status >= 400) {
-      console.error('Google Form submission failed for excursion order:', response.status, response.statusText);
-      return NextResponse.json({ ok: false, error: 'Unable to submit order request.' }, { status: 502 });
+      console.error('Google Form submission failed for site lead:', response.status, response.statusText);
+      return NextResponse.json({ ok: false, error: 'Unable to submit request.' }, { status: 502 });
     }
   } catch (error) {
-    console.error('Google Form submission threw for excursion order:', error);
-    return NextResponse.json({ ok: false, error: 'Unable to submit order request.' }, { status: 502 });
+    console.error('Google Form submission threw for site lead:', error);
+    return NextResponse.json({ ok: false, error: 'Unable to submit request.' }, { status: 502 });
   }
 
   return NextResponse.json({ ok: true });

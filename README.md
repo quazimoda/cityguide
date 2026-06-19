@@ -42,7 +42,7 @@ This project is ready to deploy on Vercel as a standard Next.js application. Use
 
 ## Environment variables
 
-Copy `.env.example` for local reference if needed. The public site URL is optional. Excursion order requests also require server-side Google Forms variables when that feature is enabled:
+Copy `.env.example` for local reference if needed. The public site URL is optional. Excursion order, contact, and subscribe submissions share the same server-side Google Form/Sheet variables when those features are enabled:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://city-advisor-istanbul.vercel.app
@@ -61,28 +61,37 @@ GOOGLE_FORM_ENTRY_SOURCE_LABEL=
 GOOGLE_FORM_ENTRY_DISCOUNT_PERCENT=
 # Optional: only set this if the Google Form has a Submitted at question/column.
 GOOGLE_FORM_ENTRY_SUBMITTED_AT=
+# Optional: only set this if the Google Form has a Submission type question/column.
+GOOGLE_FORM_ENTRY_SUBMISSION_TYPE=
 ```
 
 Set `NEXT_PUBLIC_SITE_URL` in Vercel when a production domain is connected so metadata, robots, and sitemap URLs point to the canonical site.
 
 
-## Excursion order requests via Google Forms
+## Site submissions via Google Forms
 
-Excursion order requests are submitted by the existing client form to `/api/excursion-order`, then forwarded server-side to a Google Form `formResponse` endpoint. The browser must not submit directly to Google Forms.
+Excursion order requests are submitted by the existing client form to `/api/excursion-order`, then forwarded server-side to the shared Google Form `formResponse` endpoint. Contact messages and subscribe requests are submitted to `/api/site-lead`, which uses the same `GOOGLE_FORM_ACTION_URL` and linked Google Sheet. The browser must not submit directly to Google Forms.
 
-The public site form intentionally asks users for only four visible fields: name, phone, preferred time, and message. Offer, price, duration, source page URL, source article slug, and source label are collected from the contextual partner placement and submitted automatically to separate Google Form fields/Google Sheet columns; they are not appended to the message. The hidden kitten discount is stored client-side with the existing safe localStorage fallback, and when configured it is submitted as its own Google Form field/Google Sheet column rather than being appended to the message.
+The excursion order form intentionally asks users for only four visible fields: name, phone, preferred time, and message. Offer, price, duration, source page URL, source article slug, and source label are collected from the contextual partner placement and submitted automatically to separate Google Form fields/Google Sheet columns; they are not appended to the message. The hidden kitten discount is stored client-side with the existing safe localStorage fallback, and when configured it is submitted as its own Google Form field/Google Sheet column rather than being appended to the message.
+
+Contact and subscribe submissions reuse the existing Google Form fields wherever possible. The existing email field is stored with `GOOGLE_FORM_ENTRY_EMAIL`; do not create a separate email environment variable. The optional Google Form field “Submission type” is configured with `GOOGLE_FORM_ENTRY_SUBMISSION_TYPE` and can distinguish rows with these values:
+
+- `excursion_order`
+- `contact`
+- `subscribe`
 
 To configure the backend storage workflow:
 
-1. Create a Google Form with the required storage fields: name, phone, preferred time, message, offer name, price, duration, source page URL, source article slug, and source label. Add a short-answer field such as “Kitten discount” only if you want the optional discount column, and add submitted at only if you want that optional column.
-2. Link the form responses to Google Sheets so each submitted request is recoverable from the linked sheet.
-3. Publish the form.
-4. Use the form `formResponse` URL as `GOOGLE_FORM_ACTION_URL`.
-5. Use a Google Forms pre-filled link or browser DevTools to get every `entry.xxxxx` field ID.
-6. Add the required `GOOGLE_FORM_*` environment variables from `.env.example` in Vercel Project Settings. If you add the optional kitten discount field, put its `entry.xxxxx` value in `GOOGLE_FORM_ENTRY_DISCOUNT_PERCENT`; this variable is optional and the order flow still works when it is not configured. Add `GOOGLE_FORM_ENTRY_SUBMITTED_AT` only when the Google Form actually has that question/column.
-7. Redeploy after adding or changing the environment variables.
+1. Use the existing Google Form and linked Google Sheet for excursion orders, contact messages, and subscribe requests.
+2. Ensure the form has the required storage fields: name, email, phone, preferred time, message, offer name, price, duration, source page URL, source article slug, and source label. Add a short-answer field such as “Kitten discount” only if you want the optional discount column, add submitted at only if you want that optional column, and add “Submission type” if you want rows labeled by submission source.
+3. Link the form responses to Google Sheets so each submitted request is recoverable from the linked sheet.
+4. Publish the form.
+5. Use the form `formResponse` URL as `GOOGLE_FORM_ACTION_URL`.
+6. Use a Google Forms pre-filled link or browser DevTools to get every `entry.xxxxx` field ID.
+7. Add the required `GOOGLE_FORM_*` environment variables from `.env.example` in Vercel Project Settings. If you add the optional kitten discount field, put its `entry.xxxxx` value in `GOOGLE_FORM_ENTRY_DISCOUNT_PERCENT`; this variable is optional and the flows still work when it is not configured. Add `GOOGLE_FORM_ENTRY_SUBMITTED_AT` only when the Google Form actually has that question/column. Add `GOOGLE_FORM_ENTRY_SUBMISSION_TYPE` only when the Google Form has the “Submission type” question/column.
+8. Redeploy after adding or changing the environment variables.
 
-The current production Google Form environment values must be configured in Vercel and must not be committed to the repository. The excursion flow intentionally does not add payment, database, CMS, admin, auth, analytics, newsletter provider, Stripe, or checkout integration. Keep the homepage free of commercial CTAs; contextual offers should remain limited to compact partner/ad placement areas without duplicate article blocks, header CTAs, or search result CTAs.
+The current production Google Form environment values must be configured in Vercel and must not be committed to the repository. These flows intentionally do not add payment, database, CMS, admin, auth, analytics, newsletter provider, Stripe, checkout, separate Google Form configuration, or separate Google Sheet configuration. Keep the homepage free of commercial CTAs; contextual offers should remain limited to compact partner/ad placement areas without duplicate article blocks, header CTAs, or search result CTAs.
 
 ## MVP scope
 
