@@ -9,5 +9,6 @@ export const siteConfig = {
     x: '#',
     youtube: '#',
     tiktok: '#',
+    linkedin: 'https://www.linkedin.com/in/elmira-tassymova-tass',
   },
 } as const;

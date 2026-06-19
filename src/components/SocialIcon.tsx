@@ -1,9 +1,10 @@
-type SocialIconProps = { name: 'instagram' | 'facebook' | 'x' | 'youtube' | 'tiktok'; className?: string };
+type SocialIconProps = { name: 'instagram' | 'facebook' | 'x' | 'youtube' | 'tiktok' | 'linkedin'; className?: string };
 
 export function SocialIcon({ name, className = 'h-5 w-5' }: SocialIconProps) {
   if (name === 'instagram') return <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>;
   if (name === 'facebook') return <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor"><path d="M14.2 8.1V6.7c0-.7.5-.9 1-.9h1.6V3.1c-.8-.1-1.7-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v.8H7.4v3h2.7V21h3.3v-9.9h2.7l.4-3h-3.1Z"/></svg>;
   if (name === 'x') return <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor"><path d="M13.9 10.5 21.3 2h-1.8l-6.4 7.3L8 2H2l7.8 11.1L2 22h1.8l6.8-7.8L16 22h6l-8.1-11.5Zm-2.4 2.7-.8-1.1L4.4 3.3h2.8l5 7 .8 1.1 6.6 9.3h-2.8l-5.3-7.5Z"/></svg>;
   if (name === 'youtube') return <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor"><path d="M21.6 7.1s-.2-1.5-.9-2.1c-.9-.9-1.8-.9-2.3-1C15.2 3.8 12 3.8 12 3.8s-3.2 0-6.4.2c-.5.1-1.4.1-2.3 1-.7.6-.9 2.1-.9 2.1S2.2 8.9 2.2 10.7v1.7c0 1.8.2 3.6.2 3.6s.2 1.5.9 2.1c.9.9 2 .9 2.5 1 1.8.2 6.2.2 6.2.2s3.2 0 6.4-.2c.5-.1 1.4-.1 2.3-1 .7-.6.9-2.1.9-2.1s.2-1.8.2-3.6v-1.7c0-1.8-.2-3.6-.2-3.6ZM10.1 14.6V8.4l5.5 3.1-5.5 3.1Z"/></svg>;
+  if (name === 'linkedin') return <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor"><path d="M5.3 8.9H2.1V21h3.2V8.9ZM3.7 3C2.7 3 2 3.7 2 4.6s.7 1.7 1.7 1.7 1.7-.7 1.7-1.7S4.7 3 3.7 3Zm8.2 5.9H8.8V21H12v-6.4c0-1.7.8-2.8 2.3-2.8 1.3 0 2 1 2 2.7V21h3.2v-6.9c0-3.7-2-5.5-4.7-5.5-1.4 0-2.3.5-2.9 1.3v-1Z"/></svg>;
   return <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor"><path d="M16.7 3c.4 2.5 1.8 4 4.3 4.2v3.1c-1.5.1-2.8-.3-4.2-1.1v5.8c0 7.4-8.1 9.7-11.4 4.4-2.1-3.4-.8-9.4 6-9.6v3.3c-.5.1-1 .2-1.5.4-1.4.5-2.2 1.8-1.9 3.2.5 2.7 5.3 3.5 5.3-1.8V3h3.4Z"/></svg>;
 }
