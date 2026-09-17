@@ -1,9 +1,14 @@
 import type { ImageAsset } from './media';
 export type ContentSection = {
   heading: string;
-  body: string[];
+  body?: string[];
+  content?: ArticleContentBlock[];
   image?: ImageAsset;
 };
+export type ArticleContentBlock =
+  | { type: 'paragraph'; text: string }
+  | { type: 'list'; items: string[]; ordered?: boolean }
+  | { type: 'table'; headers: string[]; rows: string[][] };
 export type Category = {
   title: string;
   slug: string;
