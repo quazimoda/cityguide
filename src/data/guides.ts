@@ -1,5 +1,5 @@
 import type { Article } from '@/types/content';
-import { imageRotation } from './media';
+import { imageRotation, istanbulImages } from './media';
 
 const guideData = [
   {
@@ -122,20 +122,157 @@ const guideData = [
     ],
   },
   {
-    title: 'Metro, Tram, and Airport Transfers',
+    title: 'Istanbul Airport Transportation Guide: Metro, Tram, Bus or Private Transfer?',
     slug: 'metro-tram-airport-transfers',
     category: 'Transportation Tips',
-    excerpt: 'A practical overview of Istanbul’s rail-based movement and airport transfer planning, with flexible advice for changing schedules.',
-    publishedDate: '2026-02-10',
-    readingTime: '8 min read',
-    tags: ['Metro', 'Tram', 'Airport transfer', 'Marmaray', 'Route planning'],
-    seoDescription: 'Plan Istanbul metro, tram, Marmaray, and airport transfers with practical tips, stable cautions, and route advice for visitors and newcomers.',
+    excerpt: 'Compare Istanbul Airport transfer options, including private transfer, M11 metro, Havaist buses, taxis and routes to Sultanahmet, Taksim and Sabiha Gökçen.',
+    publishedDate: '2026-09-17',
+    readingTime: '9 min read',
+    qualityLevel: 'pillar',
+    lastReviewedAt: '2026-09-17',
+    tags: ['Istanbul Airport', 'Airport transfer', 'Metro', 'Havaist', 'Taxi', 'Sultanahmet', 'Taksim', 'Sabiha Gökçen'],
+    seoDescription: 'Practical Istanbul airport transportation guide comparing private transfers, M11 metro, Havaist buses, taxis and routes from IST or SAW to Sultanahmet, Taksim and central Istanbul.',
+    sourceNotes: [
+      'Check Istanbul Airport’s official transport information for current ground-transport options.',
+      'Check Metro Istanbul for current M11 and M4 routes and operating information.',
+      'Check Havaist’s official website for current routes, stops, and schedules.',
+      'Check official Istanbul public transport and Istanbulkart information for current fares and card rules.',
+    ],
     sections: [
-      { heading: 'Who this guide is for', body: ['Use this if you want predictable movement across Istanbul and prefer rail or official shuttles over negotiating traffic. It is especially helpful when choosing accommodation near useful transit.'] },
-      { heading: 'What to expect', body: ['Rail lines are often the most reliable way to avoid road congestion, but transfers can involve walking, stairs, crowds, and station names that take time to learn. Airport routes and shuttle details may change, so verify close to your travel date.'] },
-      { heading: 'Planning advice', body: ['For sightseeing, staying near a tram, metro, ferry, or Marmaray connection can save time every day. For airport days, leave a buffer for luggage, station navigation, and unexpected service changes rather than planning to arrive at the last minute.'] },
-      { heading: 'Practical tips and budget note', body: ['Rail and official public options can be economical, while private transfers may be worth it for late arrivals, heavy luggage, or groups. Compare current options before booking because fares and routes may change.'] },
-      { heading: 'Common mistakes to avoid', body: ['Do not book accommodation based only on straight-line distance to attractions. In Istanbul, a place near a strong transit line can be easier than a place that looks central but depends on traffic.'] },
+      {
+        heading: 'Planning your arrival',
+        content: [
+          { type: 'paragraph', text: 'Istanbul does not ease you into the city. It arrives all at once: the size of the airport, the crowds, the unfamiliar signs and the sudden realization that your hotel may still be an hour away.' },
+          { type: 'paragraph', text: 'The good news is that Istanbul Airport is well connected to the city. The less convenient truth is that the best route depends heavily on where you are staying, how much luggage you have and what time your flight lands. A metro journey that looks simple on a map may involve several changes, while an inexpensive airport bus can become tiring after a long flight.' },
+          { type: 'paragraph', text: 'This guide explains the main Istanbul Airport transportation options and helps you choose the quickest, most reliable and most comfortable way to reach your hotel. If this is your first visit, our [48 Hours for First-Time Visitors](/guides/weekend-routes/48-hours-first-time) guide can help you plan what comes next.' },
+        ],
+      },
+      {
+        heading: 'First, Check Your Airport',
+        content: [
+          { type: 'paragraph', text: 'Istanbul has two major passenger airports:' },
+          { type: 'list', items: ['Istanbul Airport (IST) is on the European side and handles most Turkish Airlines flights, along with many international services.', 'Sabiha Gökçen International Airport (SAW) is on the Asian side and is widely used by Pegasus Airlines and other low-cost carriers.'] },
+          { type: 'paragraph', text: 'The airports are far apart. Always check the three-letter airport code on your ticket before planning your transfer.' },
+          { type: 'paragraph', text: 'Most visitors staying in Sultanahmet, Taksim, Karaköy, Galata, Beşiktaş or the central European districts arrive through Istanbul Airport. The transport advice below therefore focuses mainly on IST, with a separate section for Sabiha Gökçen.' },
+        ],
+      },
+      {
+        heading: 'Quick Comparison: Which Airport Transfer Is Best?',
+        content: [{ type: 'table', headers: ['Option', 'Best for', 'Main advantage', 'What to consider'], rows: [
+          ['Private transfer', 'Families, couples, business travellers and late arrivals', 'Direct journey to your hotel', 'Costs more than public transport'],
+          ['M11 metro', 'Solo travellers and light luggage', 'Fast and unaffected by road traffic', 'Usually requires additional connections'],
+          ['Havaist airport bus', 'Budget-conscious travellers', 'Comfortable and relatively simple', 'Travel time depends on traffic'],
+          ['Airport taxi', 'Travellers who have not booked ahead', 'Available outside the terminal', 'Final fare and journey time can vary'],
+          ['Rental car', 'Trips beyond Istanbul', 'Flexibility outside the city', 'Driving and parking in central Istanbul are difficult'],
+        ] }],
+      },
+      {
+        heading: 'The Best Overall Option: A Pre-Booked Private Transfer',
+        content: [
+          { type: 'paragraph', text: 'For most first-time visitors, a private airport transfer offers the smoothest arrival.' },
+          { type: 'paragraph', text: 'After a long flight, Istanbul’s transport network can feel unnecessarily complicated. Reaching Sultanahmet or another central neighbourhood by public transport may require a metro ride followed by one or more changes, often with stairs, crowded platforms and a final walk over uneven streets.' },
+          { type: 'paragraph', text: 'A private transfer removes those complications. The driver meets you at the airport, helps coordinate your pickup and takes you directly to your accommodation. This is particularly useful when travelling with children, several suitcases, elderly passengers or a group that can divide the cost.' },
+          { type: 'paragraph', text: 'Our practical recommendation is to book an [Istanbul Airport Transfer](https://rentotransfer.com/book/istanbul-airport-transfer) with RentoTransfer. The service provides private, door-to-door transportation with fixed pricing, professional drivers, airport meet-and-greet service and flight monitoring.' },
+          { type: 'paragraph', text: 'Flight monitoring is especially valuable in Istanbul. If your aircraft arrives earlier or later than scheduled, the transfer company can adjust the pickup time instead of relying only on your original arrival details. Fixed pricing also allows you to know the cost before the journey begins.' },
+          { type: 'paragraph', text: 'A private transfer is usually the most convenient choice if:' },
+          { type: 'list', items: ['you are visiting Istanbul for the first time;', 'your flight arrives late at night or early in the morning;', 'your hotel is in Sultanahmet or away from a major transport station;', 'you have heavy luggage;', 'you are travelling with children or elderly family members;', 'you want to reach the hotel without changing vehicles;', 'reliability and comfort matter more than finding the lowest fare.'] },
+          { type: 'paragraph', text: 'Book in advance and provide the correct flight number, arrival airport and complete hotel address. Istanbul has many hotels with similar names, particularly in the Old City.' },
+        ],
+      },
+      {
+        heading: 'Taking the M11 Metro from Istanbul Airport',
+        content: [
+          { type: 'paragraph', text: 'The M11 metro is generally the fastest public transport option from Istanbul Airport. It connects the airport with Gayrettepe, an important transport hub on the European side.' },
+          { type: 'paragraph', text: 'The rail journey to Gayrettepe takes roughly half an hour under normal operating conditions. From there, passengers can connect to other parts of Istanbul’s metro system.' },
+          { type: 'paragraph', text: 'The M11 is a good choice when:' },
+          { type: 'list', items: ['you are travelling alone;', 'you have a small suitcase or backpack;', 'your accommodation is close to a metro station;', 'you are comfortable navigating transfers;', 'you are travelling during heavy road traffic.'] },
+          { type: 'paragraph', text: 'However, the M11 does not take you directly to most tourist hotels. If you are staying around Taksim, Sultanahmet, Sirkeci, Karaköy or Beşiktaş, expect at least one additional connection and possibly a walk from the final station.' },
+          { type: 'paragraph', text: 'For Sultanahmet in particular, the journey can look deceptively easy online. In practice, it usually involves moving between different transport lines before reaching the T1 tram or another central connection. With luggage, every interchange adds time and effort.' },
+          { type: 'paragraph', text: 'Before travelling, check the current operating hours and route information. Istanbul’s transport network continues to develop, and connections may change.' },
+        ],
+      },
+      {
+        heading: 'Havaist Airport Buses',
+        content: [
+          { type: 'paragraph', text: 'Havaist coaches connect Istanbul Airport with several major districts and transport hubs across the city. They are more comfortable than ordinary city buses and usually have luggage storage beneath the vehicle.' },
+          { type: 'paragraph', text: 'For travellers on a moderate budget, Havaist can be an excellent compromise between the metro and a private car. It requires less navigation than a multi-stage metro journey, although you still need to travel from the bus stop to your hotel.' },
+          { type: 'paragraph', text: 'Popular destinations include central areas such as Taksim and other important points on both sides of the city. Routes and departure points can change, so check the official schedule before leaving the terminal.' },
+          { type: 'paragraph', text: 'Havaist works best when your accommodation is close to one of its stops. If you still need a taxi after leaving the bus, compare the total cost and inconvenience with booking a direct transfer from the airport.' },
+          { type: 'paragraph', text: 'Road traffic is the main disadvantage. Istanbul’s congestion can be severe during weekday rush hours, on Friday evenings and around major events. Allow a generous margin when using the bus for your return journey to the airport.' },
+        ],
+      },
+      {
+        heading: 'Taking a Taxi from Istanbul Airport',
+        content: [
+          { type: 'paragraph', text: 'Official taxis operate from designated ranks outside the terminal. They provide a direct ride and are useful when you have not arranged transportation in advance.' },
+          { type: 'paragraph', text: 'The final cost is based on the meter and can vary according to distance, traffic, tolls and the exact location of your hotel. A journey that is reasonably quick late at night may take considerably longer during peak traffic.' },
+          { type: 'paragraph', text: 'Use only the official taxi queue. Avoid accepting rides from people who approach you inside the arrivals hall and offer an unofficial car.' },
+          { type: 'paragraph', text: 'Before leaving, show the driver the full hotel address on your phone. It is also sensible to keep the hotel’s telephone number available, as small properties in Sultanahmet, Galata and the surrounding neighbourhoods can be difficult to locate.' },
+          { type: 'paragraph', text: 'A taxi is convenient, but it offers less price certainty than a pre-booked transfer.' },
+        ],
+      },
+      {
+        heading: 'Getting from Istanbul Airport to Sultanahmet',
+        content: [
+          { type: 'paragraph', text: 'Sultanahmet is home to Hagia Sophia, the Blue Mosque, Topkapı Palace and many of Istanbul’s historic hotels. It is also one of the less straightforward areas to reach from Istanbul Airport by public transport. Our [Sultanahmet Classics in One Day](/guides/best-places-to-visit/sultanahmet-classics) guide gives practical context for the district.' },
+          { type: 'paragraph', text: 'The three most practical options are:' },
+          { type: 'list', ordered: true, items: ['Private transfer: the simplest door-to-door journey, especially with luggage.', 'Havaist bus: useful when a current route stops conveniently near the Old City.', 'M11 metro with connections: economical and less affected by traffic, but more demanding after a flight.'] },
+          { type: 'paragraph', text: 'Sultanahmet’s narrow roads and pedestrian areas mean that even cars may not always stop directly in front of every hotel. Confirm the closest possible drop-off point if your accommodation is on a restricted street.' },
+        ],
+      },
+      {
+        heading: 'Getting from Istanbul Airport to Taksim',
+        content: [
+          { type: 'paragraph', text: 'Taksim is easier to reach because it is a major transport and hotel district.' },
+          { type: 'paragraph', text: 'A private transfer remains the most comfortable option, while Havaist is often practical for travellers staying near Taksim Square. The M11 metro can also work well via Gayrettepe and the connecting metro network.' },
+          { type: 'paragraph', text: 'Check the distance between your hotel and Taksim Square before choosing the airport bus. The wider Taksim and Beyoğlu area is hilly, and a short-looking walk can feel much longer with a suitcase.' },
+        ],
+      },
+      {
+        heading: 'How the Tram Fits into Your Journey',
+        content: [
+          { type: 'paragraph', text: 'Istanbul’s trams are extremely useful once you are in the city, but there is no direct tram from Istanbul Airport.' },
+          { type: 'paragraph', text: 'The T1 tram is the line most visitors use. It passes through or near several major sightseeing areas, including Sultanahmet, Gülhane, Eminönü, Karaköy and Kabataş. It is excellent for travelling around the historic centre and connecting the Old City with the waterfront.' },
+          { type: 'paragraph', text: 'If you arrive by metro, the T1 may form the final stage of your journey. Bear in mind that it can become very crowded, particularly around Eminönü and Sultanahmet. Boarding with several large bags during busy periods is rarely pleasant.' },
+        ],
+      },
+      {
+        heading: 'Using Istanbul Public Transport',
+        content: [
+          { type: 'paragraph', text: 'An Istanbulkart can be used across much of the city’s public transport network, including metro lines, trams, municipal buses and ferries. It is worth buying if you plan to use public transportation regularly during your stay. Read [Istanbulkart and Ferry Basics](/guides/transportation-tips/istanbulkart-ferry-basics) for a beginner-friendly overview.' },
+          { type: 'paragraph', text: 'Keep several practical points in mind:' },
+          { type: 'list', items: ['Station lifts and escalators may require a detour.', 'Central trams and metro trains can be crowded.', 'Some historic neighbourhoods have steep or uneven streets.', 'Mobile internet makes route planning considerably easier.', 'Transport schedules and fares can change, so check them shortly before travelling.'] },
+          { type: 'paragraph', text: 'Public transport is inexpensive and efficient once you understand the network. The airport arrival journey is often the hardest part, especially when tired or carrying luggage.' },
+        ],
+      },
+      {
+        heading: 'Travelling from Sabiha Gökçen Airport',
+        content: [
+          { type: 'paragraph', text: 'Sabiha Gökçen Airport is connected to the Asian side by the M4 metro line. The line runs towards Kadıköy and offers connections to other transport services, including ferries and the wider metro network.' },
+          { type: 'paragraph', text: 'The M4 is a strong option for travellers staying in Kadıköy or other Asian-side districts. Reaching European-side neighbourhoods such as Sultanahmet or Taksim requires additional travel across the Bosphorus.' },
+          { type: 'paragraph', text: 'Airport buses, taxis and private transfers are also available from SAW. When booking a car service, double-check that you have selected Sabiha Gökçen rather than Istanbul Airport.' },
+        ],
+      },
+      {
+        heading: 'Returning to the Airport',
+        content: [
+          { type: 'paragraph', text: 'The journey back to the airport deserves more planning than the arrival.' },
+          { type: 'paragraph', text: 'Istanbul traffic is unpredictable, and the airport terminal is large. International passengers should leave enough time for the road journey, check-in, security and the walk to the departure gate.' },
+          { type: 'paragraph', text: 'For a stress-free departure:' },
+          { type: 'list', items: ['confirm whether your flight leaves from IST or SAW;', 'check traffic conditions before leaving;', 'allow extra time during rush hour;', 'reserve a private transfer in advance if timing is critical;', 'do not rely on the travel time shown by a navigation app many hours earlier.'] },
+          { type: 'paragraph', text: 'For early-morning departures, families and travellers with several bags, a scheduled private pickup is usually the safest and most comfortable solution.' },
+        ],
+      },
+      {
+        heading: 'Which Option Should You Choose?',
+        content: [
+          { type: 'paragraph', text: 'Choose the M11 metro if you are travelling light, want to avoid traffic and do not mind changing lines.' },
+          { type: 'paragraph', text: 'Choose Havaist if you want an affordable airport service and your hotel is close to one of its stops.' },
+          { type: 'paragraph', text: 'Choose an official taxi if you need an immediate ride and have not made a reservation.' },
+          { type: 'paragraph', text: 'Choose a pre-booked private transfer if you want the most reliable door-to-door experience, a known price and the least complicated start to your stay.' },
+          { type: 'paragraph', text: 'Istanbul will give you plenty of beautiful chaos once you arrive. Your journey from the airport does not need to be part of it.' },
+        ],
+      },
     ],
   },
   {
@@ -280,5 +417,7 @@ const guideData = [
 
 export const guides: Article[] = guideData.map((guide, index) => ({
   ...guide,
-  heroImage: imageRotation[index % imageRotation.length],
+  heroImage: guide.slug === 'metro-tram-airport-transfers'
+    ? istanbulImages.tramTransport
+    : imageRotation[index % imageRotation.length],
 }));

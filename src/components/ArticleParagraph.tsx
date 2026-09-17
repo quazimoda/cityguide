@@ -1,12 +1,12 @@
 import Link from 'next/link';
 
-const internalMarkdownLinkPattern = /\[([^\]]+)\]\((\/[^)\s]+)\)/g;
+const markdownLinkPattern = /\[([^\]]+)\]\((https?:\/\/[^)\s]+|\/[^)\s]+)\)/g;
 
 export function ArticleParagraph({ text }: { text: string }) {
   const parts: Array<string | { label: string; href: string }> = [];
   let lastIndex = 0;
 
-  for (const match of text.matchAll(internalMarkdownLinkPattern)) {
+  for (const match of text.matchAll(markdownLinkPattern)) {
     const [fullMatch, label, href] = match;
     const index = match.index ?? 0;
 
@@ -28,9 +28,11 @@ export function ArticleParagraph({ text }: { text: string }) {
         typeof part === 'string' ? (
           part
         ) : (
-          <Link key={`${part.href}-${index}`} href={part.href}>
-            {part.label}
-          </Link>
+          part.href.startsWith('/') ? (
+            <Link key={`${part.href}-${index}`} href={part.href}>{part.label}</Link>
+          ) : (
+            <a key={`${part.href}-${index}`} href={part.href} target="_blank" rel="sponsored noopener noreferrer">{part.label}</a>
+          )
         ),
       )}
     </p>

@@ -37,6 +37,30 @@ a {
   color: #0f766e;
 }
 
+.article ul,
+.article ol {
+  margin: 0 0 1.25rem 1.5rem;
+  line-height: 1.7;
+}
+
+.article ul { list-style: disc; }
+.article ol { list-style: decimal; }
+.article li > p { margin-bottom: .35rem; }
+.article a { color: #0f766e; text-decoration: underline; text-underline-offset: 3px; }
+
+.article-table {
+  margin: 1rem 0 1.5rem;
+  overflow-x: auto;
+  border: 1px solid #d1d5db;
+  border-radius: .75rem;
+}
+
+.article-table table { width: 100%; min-width: 42rem; border-collapse: collapse; background: white; }
+.article-table th,
+.article-table td { padding: .75rem; border-bottom: 1px solid #e5e7eb; text-align: left; vertical-align: top; }
+.article-table th { background: #f0fdfa; color: #134e4a; font-weight: 800; }
+.article-table tbody tr:last-child td { border-bottom: 0; }
+
 
 .hero-flight-video {
   animation: hero-flight-scale 24s ease-in-out infinite alternate;
